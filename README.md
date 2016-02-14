@@ -12,22 +12,22 @@ There are two ways to import the VO Manager package. You can either:
 
 By default when importing from the Unity Asset Store the package also comes with a demo as well as the default VO Manager package which contains:
 
-    * VOManager
-        * Editor
-            * VOBankEditor.cs
-            * VOManagerEditor.cs
-        * Prefabs
-            * VOManager.prefab
-        * Scripts
-            * VOBank.cs
-            * VOManager.cs
-        * ReadMe.pdf
+* VOManager
+   * Editor
+      * VOBankEditor.cs
+      * VOManagerEditor.cs
+   * Prefabs
+      * VOManager.prefab
+   * Scripts
+      * VOBank.cs
+      * VOManager.cs
+   * ReadMe.pdf
         
 ## Setup
 To set up our VOManager you have two of the following options. You can either:
 
-    1. Create a new empty GameObject in the Hierarchy and drop the VOBank script or the VOManager script onto it or;
-    2. You can go into the Project panel and into the Prefabs folder and drag and drop the VOManager prefab into the Hierarchy.
+1. Create a new empty GameObject in the Hierarchy and drop the VOBank script or the VOManager script onto it or;
+2. You can go into the Project panel and into the Prefabs folder and drag and drop the VOManager prefab into the Hierarchy.
 
 By default when adding the VOBank script or the VOManager script onto a new object an Audio Source component will be added automatically along with one or the other script since they are dependent on each other. You should see a similar interface below when you’ve successfully setup the initial VOManager.
 
@@ -64,8 +64,8 @@ Setup the Text component properties and values the way you wish to (by default y
 
 Once you have finished setting up your VOManager, save your scene and do one of the following:
 
-    1. If you used the VOManager prefab you can either Apply the current prefab or;
-    2. Create a new prefab by dragging your VOManager object into the Project panel (this should be done if you made your VOManager by creating a new GameObject)
+1. If you used the VOManager prefab you can either Apply the current prefab or;
+2. Create a new prefab by dragging your VOManager object into the Project panel (this should be done if you made your VOManager by creating a new GameObject)
     
 ## Usage
 
