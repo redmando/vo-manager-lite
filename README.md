@@ -45,14 +45,14 @@ Go ahead and click on the expand icon by “[ID 0] Clip 0” to expand the panel
 
 Once expanded you should see a few more options. Here is a list of what they are and do:
 
-    * **ID**
-    An integer value that auto-increments (non-changeable) based on the position the current clip is in. This is used as a reference to call your clip’s properties.
-    * **Clip Name**
-    A string for self-reference. This is mainly use to keep track of all the different clips you may have in the bank for quick reference.
-    * **Subtitle Text**
-    A multi-line text area (string format) that contains the subtitle that you wish to have displayed on the UI when an audio clip is playing (should usually match the dialogue of the clip).
-    * **Dialogue Clip**
-    The audio clip.
+* **ID**
+  An integer value that auto-increments (non-changeable) based on the position the current clip is in. This is used as a reference to call your clip’s properties.
+* **Clip Name**
+  A string for self-reference. This is mainly use to keep track of all the different clips you may have in the bank for quick reference.
+* **Subtitle Text**
+  A multi-line text area (string format) that contains the subtitle that you wish to have displayed on the UI when an audio clip is playing (should usually match the dialogue of the clip).
+* **Dialogue Clip**
+  The audio clip.
     
 You can also remove a clip by simply pressing the “Remove Clip” button. All ID values will reassign itself if you do so. There is however one last step we need to perform before our setup is complete. In order to use our subtitle system we must first have to go to the Hierarchy and create a new Text object. To do this go to Create -> UI -> Text. By default (if you have no Canvas elements in the scene) it will automatically create a Canvas and EventSystem object for you like so:
 
