@@ -1,32 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// ClipProperties - Description:
-/// Holds the different properties of a single audio clip.
+/// VOBank
+/// Description: An audio bank that holds a collection of voice-over clips and its properties.
 /// </summary>
 
+// contains information for each audio set in the vo library
 [System.Serializable]
 public class ClipProperties
 {
-    // audio clip properties
-    // also known as variables
-    public int id;                      // keeps track of the clip's current id (uniquely assigned)
-    public string strName;              // the name of the current clip
-    public string strSubtitle;          // the subtitle tied into the current clip (if any)
+    public int id;                      // keeps track of the clip's current id 
     public AudioClip audClpDialogue;    // the current dialogue clip
+    public string strName;              // the name of the current clip
     public bool blnExpandClipPnl;       // boolean to keep track of custom editor panel
+    public string dialogue;             // the current clip's dialogue
 }
 
-/// <summary>
-/// VOBank - Description:
-/// An audio bank that holds a collection of VO (voice-over) clips.
-/// </summary>
-
-// automatically assign the VOManager.cs script and 
-// audio source component to the object if none
-// is present
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(VOManager))]
 public class VOBank : MonoBehaviour
@@ -35,9 +25,19 @@ public class VOBank : MonoBehaviour
     public List<ClipProperties> bank = new List<ClipProperties>();
 
     // add a new clip to the bank
-    public void AddClip()
+    public void AddClip(ClipProperties _clipProperties)
     {
         bank.Add(new ClipProperties());
+    }
+
+    // add a new empty clip to the bank
+    public void AddEmptyClip()
+    {
+        ClipProperties clipProp = new ClipProperties();
+        clipProp.id = 0;
+        clipProp.strName = "Clip Name";
+        clipProp.dialogue = "";
+        bank.Add(clipProp);
     }
 
     // remove a clip from the bank
