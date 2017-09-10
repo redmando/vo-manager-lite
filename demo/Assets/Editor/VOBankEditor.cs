@@ -1,29 +1,39 @@
-﻿using UnityEditor;
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
+using UnityEditor;
 using System.Collections.Generic;
 
 /// <summary>
-/// VOBankEditor - Description:
-/// Custom inspector editor for VOBank.
+/// VOBankEditor
+/// Description: Custom inspector editor for VOBank.
 /// </summary>
 
-// set the custom editor type to VOBank script
 [CustomEditor(typeof(VOBank))]
 public class VOBankEditor : Editor
 {
-    // private variables
-    private VOBank voBank;   // reference to the VOBank
+    // create a reference to the VOBank 
+    private VOBank voBank;
 
+    // on enabled
     private void OnEnable()
     {
         // set the reference to the current inspected object
         voBank = (VOBank)target;
     }
 
-    // overrite inspector interface
+    // overwrite the inspector interface
     public override void OnInspectorGUI()
     {
+        /// GUI STYLES
+
+        // header styles
+        GUIStyle styleRowHeader = new GUIStyle();
+        styleRowHeader.padding = new RectOffset(0, 0, 3, 3);
+        styleRowHeader.normal.background = EditorStyle.SetBackground(1, 1, new Color(0.1f, 0.1f, 0.1f, 0.2f));
+        GUIStyle styleDialogueInputFields = new GUIStyle(GUI.skin.textField);
+        styleDialogueInputFields.margin = new RectOffset(5, 0, 5, 0);
+
+        /// EDITOR 
+
         // record any changes done within the VOBank
         Undo.RecordObjects(targets, "VOBank");
 
@@ -31,14 +41,12 @@ public class VOBankEditor : Editor
 
         // info box to inform user if they have no clips in the sound bank
         if (voBank.bank.Count == 0)
-            EditorGUILayout.HelpBox("You currently have no sound clips in your sound bank.", MessageType.Info);
+            EditorGUILayout.HelpBox("You currently have no audio clips in your VO Bank. Press the Add Clip button below to add a clip.", MessageType.Info);
+        else
+            EditorGUILayout.HelpBox("Press the Add Clip button below to add more clips.", MessageType.Info);
 
-        // if the add clip button is pressed
-        if (GUILayout.Button("Add Clip"))
-            voBank.AddClip();   // add a clip to the bank
-
-        // for each clip inside the bank starting from the highest to lowest (order)
-        for (int i = (voBank.bank.Count - 1); i > -1; i--)
+        // for each clip inside the bank starting from the lowest to highest (order)
+        for (int i = 0; i < voBank.bank.Count; i++)
         {
             // record any changes done within the VOBank bank list
             Undo.RecordObjects(targets, "ClipProperties");
@@ -46,20 +54,18 @@ public class VOBankEditor : Editor
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
 
-            // if the current clip has no name
-            if (voBank.bank[i].strName == null)
-                // set the name to clip plus it's id number (auto assigned via i)
-                voBank.bank[i].strName = "Clip " + i;
-
             // expand or collapse the clip's panel depending on the boolean status
             // and name the panel based on its id and clip name
-            voBank.bank[i].blnExpandClipPnl = EditorGUILayout.Foldout(voBank.bank[i].blnExpandClipPnl, "[ID " + i + "] " + voBank.bank[i].strName);
+            voBank.bank[i].blnExpandClipPnl = EditorGUILayout.Foldout(voBank.bank[i].blnExpandClipPnl, "[ID " + voBank.bank[i].id + "] " + voBank.bank[i].strName);
 
             // if the remove button is clicked on
-            if (GUILayout.Button("Remove Clip"))
-                voBank.RemoveClip(i);   // remove that current audio clip from the bank
+            if (GUILayout.Button("-", GUILayout.MinWidth(25.0f), GUILayout.MaxWidth(25.0f)))
+                // remove that current audio clip from the bank
+                voBank.RemoveClip(i);
 
             EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space();
 
             // try and run the following
             try
@@ -67,19 +73,42 @@ public class VOBankEditor : Editor
                 // if the clip's panel is expanded
                 if (voBank.bank[i].blnExpandClipPnl)
                 {
-                    EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+                    EditorGUILayout.BeginVertical();
+                    EditorGUILayout.BeginHorizontal(styleRowHeader);
                     EditorGUILayout.LabelField("Clip Properties", EditorStyles.boldLabel);
+                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.Space();
+                    EditorGUILayout.HelpBox("Keep in mind all IDs and Clip Names must be unique. Having duplicates in the VO Bank will cause errors.", MessageType.Info);
+                    EditorGUILayout.Space();
 
-                    voBank.bank[i].id = EditorGUILayout.IntField("ID", i);  // set the clip's id (auto / non-changeable)
-                    voBank.bank[i].strName = EditorGUILayout.TextField("Clip Name", voBank.bank[i].strName);   // show the name field
+                    // set the clip's id 
+                    voBank.bank[i].id = EditorGUILayout.IntField("ID", voBank.bank[i].id);
 
-                    // the the subtitle text field
-                    EditorGUILayout.LabelField("Subtitle Text");
-                    voBank.bank[i].strSubtitle = EditorGUILayout.TextArea(voBank.bank[i].strSubtitle);
+                    // show the name field
+                    voBank.bank[i].strName = EditorGUILayout.TextField("Clip Name", voBank.bank[i].strName);
 
                     // show the audio clip field
                     voBank.bank[i].audClpDialogue = (AudioClip)EditorGUILayout.ObjectField("Dialogue Clip", voBank.bank[i].audClpDialogue, typeof(AudioClip), true);
 
+                    EditorGUILayout.BeginVertical();
+                    EditorGUILayout.Space();
+                    EditorGUILayout.Space();
+
+                    EditorGUILayout.BeginHorizontal(styleRowHeader);
+
+                    EditorGUILayout.LabelField("Dialogue", EditorStyles.boldLabel);
+
+
+                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.Space();
+                    
+                    EditorGUILayout.BeginHorizontal();
+
+                    voBank.bank[i].dialogue = EditorGUILayout.TextField(voBank.bank[i].dialogue);
+
+                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.Space();
+                    EditorGUILayout.EndVertical();
                     EditorGUILayout.EndVertical();
                 }
             }
@@ -92,6 +121,12 @@ public class VOBankEditor : Editor
                 return;
             }
         }
+
+        // if the add clip button is pressed
+        if (GUILayout.Button("Add Clip"))
+            // add a clip to the bank
+            voBank.AddEmptyClip();
+
 
         EditorGUILayout.Space();
     }
