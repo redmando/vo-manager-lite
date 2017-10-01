@@ -61,7 +61,7 @@ public class PlayerControls : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             // stop the current audio from playing
-            VOManager.Instance.Stop();
+           // VOManager.Instance.Stop();
         }
 
         // if the escape button is pressed
@@ -159,13 +159,13 @@ public class PlayerControls : MonoBehaviour
     // play sound function to handle calling VOManager functions
     void PlaySound(int id)
     {
-        // if normal mode is on
+      /*  // if normal mode is on
         if (m_blnNormalMode)
             // call normal play
             VOManager.Instance.Play(id);
         // else if normal mode is off
         else
             // call interrupt play
-            VOManager.Instance.PlayInterrupt(id);
+            VOManager.Instance.PlayInterrupt(id);*/
     }
 }
