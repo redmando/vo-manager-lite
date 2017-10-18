@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 36e03de04d7219243be0450f727aa773
-timeCreated: 1506897565
-licenseType: Pro
+guid: 6f07f8883d139d34bb34c3773af74f15
+timeCreated: 1507474211
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -9,33 +9,33 @@ ModelImporter:
     100002: BedFrame
     100004: BedMattress
     100006: BedPillow
-    100008: Book01
-    100010: Book010
-    100012: Book011
-    100014: Book012
-    100016: Book013
-    100018: Book014
-    100020: Book015
-    100022: Book016
-    100024: Book02
-    100026: Book03
-    100028: Book04
-    100030: Book05
-    100032: Book06
-    100034: Book07
-    100036: Book08
-    100038: Book09
-    100040: Bookcase
-    100042: Boombox
-    100044: BoomboxFeatures
-    100046: BoomboxTapeDeck
-    100048: CassetteTape
-    100050: CassetteTape.001
-    100052: CassetteTape.002
-    100054: CassetteTape.003
-    100056: Ceiling
-    100058: CeilingLight
-    100060: //RootNode
+    100008: //RootNode
+    100010: Book01
+    100012: Book010
+    100014: Book011
+    100016: Book012
+    100018: Book013
+    100020: Book014
+    100022: Book015
+    100024: Book016
+    100026: Book02
+    100028: Book03
+    100030: Book04
+    100032: Book05
+    100034: Book06
+    100036: Book07
+    100038: Book08
+    100040: Book09
+    100042: Bookcase
+    100044: Boombox
+    100046: BoomboxFeatures
+    100048: BoomboxTapeDeck
+    100050: CassetteTape
+    100052: CassetteTape01
+    100054: CassetteTape02
+    100056: CassetteTape03
+    100058: Ceiling
+    100060: CeilingLight
     100062: ChairBody
     100064: ChairSeat
     100066: ChairWheelsHandle
@@ -86,33 +86,33 @@ ModelImporter:
     400002: BedFrame
     400004: BedMattress
     400006: BedPillow
-    400008: Book01
-    400010: Book010
-    400012: Book011
-    400014: Book012
-    400016: Book013
-    400018: Book014
-    400020: Book015
-    400022: Book016
-    400024: Book02
-    400026: Book03
-    400028: Book04
-    400030: Book05
-    400032: Book06
-    400034: Book07
-    400036: Book08
-    400038: Book09
-    400040: Bookcase
-    400042: Boombox
-    400044: BoomboxFeatures
-    400046: BoomboxTapeDeck
-    400048: CassetteTape
-    400050: CassetteTape.001
-    400052: CassetteTape.002
-    400054: CassetteTape.003
-    400056: Ceiling
-    400058: CeilingLight
-    400060: //RootNode
+    400008: //RootNode
+    400010: Book01
+    400012: Book010
+    400014: Book011
+    400016: Book012
+    400018: Book013
+    400020: Book014
+    400022: Book015
+    400024: Book016
+    400026: Book02
+    400028: Book03
+    400030: Book04
+    400032: Book05
+    400034: Book06
+    400036: Book07
+    400038: Book08
+    400040: Book09
+    400042: Bookcase
+    400044: Boombox
+    400046: BoomboxFeatures
+    400048: BoomboxTapeDeck
+    400050: CassetteTape
+    400052: CassetteTape01
+    400054: CassetteTape02
+    400056: CassetteTape03
+    400058: Ceiling
+    400060: CeilingLight
     400062: ChairBody
     400064: ChairSeat
     400066: ChairWheelsHandle
@@ -184,9 +184,9 @@ ModelImporter:
     2300044: BoomboxFeatures
     2300046: BoomboxTapeDeck
     2300048: CassetteTape
-    2300050: CassetteTape.001
-    2300052: CassetteTape.002
-    2300054: CassetteTape.003
+    2300050: CassetteTape01
+    2300052: CassetteTape02
+    2300054: CassetteTape03
     2300056: Ceiling
     2300058: CeilingLight
     2300060: ChairBody
@@ -260,9 +260,9 @@ ModelImporter:
     3300044: BoomboxFeatures
     3300046: BoomboxTapeDeck
     3300048: CassetteTape
-    3300050: CassetteTape.001
-    3300052: CassetteTape.002
-    3300054: CassetteTape.003
+    3300050: CassetteTape01
+    3300052: CassetteTape02
+    3300054: CassetteTape03
     3300056: Ceiling
     3300058: CeilingLight
     3300060: ChairBody
@@ -381,9 +381,9 @@ ModelImporter:
     4300134: BoomboxTapeDeck
     4300136: BoomboxFeatures
     4300138: CassetteTape
-    4300140: CassetteTape.003
-    4300142: CassetteTape.002
-    4300144: CassetteTape.001
+    4300140: CassetteTape03
+    4300142: CassetteTape02
+    4300144: CassetteTape01
     4300146: Laptop
     4300148: LaptopScreen
     4300150: LaptopKeys
@@ -416,7 +416,7 @@ ModelImporter:
     addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -430,7 +430,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
