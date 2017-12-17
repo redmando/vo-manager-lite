@@ -75,5 +75,34 @@ public class PlayerControls : MonoBehaviour
         // allows the player to look left and right (full 360 turn)
         Quaternion quatLocalRotation = Quaternion.Euler(m_fltRotationX, m_fltRotationY, 0.0f);
         this.transform.rotation = quatLocalRotation;
+
+        // raycast the object in front of the player 
+        // and toggle the appropriate manager functions
+        RaycastTarget();
+    }
+
+    // raycast the object in front of the player
+    private void RaycastTarget()
+    {
+        // create a raycast
+        RaycastHit hit;
+
+        // detect if our raycast is hitting an object
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 8))
+        {
+            // if the object is tagged door
+            if(hit.transform.gameObject.tag == "Door")
+            {
+                // set the game manager door trigger to true
+                GameManager.Instance.blnTriggerDoor = true;
+            } else if (hit.transform.gameObject.tag != "Door")
+            {
+                // else set it to false
+                GameManager.Instance.blnTriggerDoor = false;
+            }
+
+            // draw a line in the editor to indicate the raycast
+            Debug.DrawLine(Vector3.forward, hit.transform.position, Color.red);
+        }
     }
 }
