@@ -386,6 +386,16 @@ public class VOManager : MonoBehaviour
     // check if the audio source is playing
     public bool IsPlaying()
     {
-        return m_audSrc.isPlaying;
+        // if there is an external audio source
+        if (m_externalAudSrc)
+        {
+            // return if the audio source is playing or not
+            return m_externalAudSrc.isPlaying;
+        }
+        else
+        {
+            // return if the audio source is playing or not
+            return m_audSrc.isPlaying;
+        }
     }
 }
