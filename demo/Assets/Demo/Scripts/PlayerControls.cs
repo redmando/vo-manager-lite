@@ -103,6 +103,10 @@ public class PlayerControls : MonoBehaviour
 
             // draw a line in the editor to indicate the raycast
             Debug.DrawLine(Vector3.forward, hit.transform.position, Color.red);
+        } else
+        {
+            // set trigger to false
+            GameManager.Instance.blnTriggerDoor = false;
         }
     }
 }
