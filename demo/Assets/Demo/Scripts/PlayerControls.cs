@@ -101,12 +101,25 @@ public class PlayerControls : MonoBehaviour
                 GameManager.Instance.blnTriggerDoor = false;
             }
 
+            // if the object is tagged laptop
+            if (hit.transform.gameObject.tag == "Laptop")
+            {
+                // set the game manager laptop trigger to true
+                GameManager.Instance.blnTriggerLaptop = true;
+            }
+            else if (hit.transform.gameObject.tag != "Laptop")
+            {
+                // else set it to false
+                GameManager.Instance.blnTriggerLaptop = false;
+            }
+
             // draw a line in the editor to indicate the raycast
             Debug.DrawLine(Vector3.forward, hit.transform.position, Color.red);
         } else
         {
             // set trigger to false
             GameManager.Instance.blnTriggerDoor = false;
+            GameManager.Instance.blnTriggerLaptop = false;
         }
     }
 }
