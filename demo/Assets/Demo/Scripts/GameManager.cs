@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
     public float fltDelayBetweenAudioDoor = 1.0f;   // the delay between audio files
     public int[] col_intHangingPictureConvo;  // an array to store the order for the hanging picture conversation
 
-
+    [Header("Laptop")]
+    public AudioSource audSrcLaptop;   // the audio source for the laptop interview
+    public bool blnTriggerLaptop; // check if the laptop interview is triggerable
+    public bool blnLaptopInterviewStart;  // check if the laptop interview has started
 
     // private variables
     private int m_intCurrentIndex;  // keep track of the current audio's index
@@ -58,7 +61,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 // if the current mode is force play mode
-                if(blnForcePlay)
+                if (blnForcePlay)
                 {
                     // force play the first audio clip and set the index to 1
                     blnDoorConvoStart = true;
@@ -104,8 +107,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // if the laptop trigger is on
+        if (blnTriggerLaptop)
+        {
+            // if the laptop conversation has not started
+            if (!blnLaptopInterviewStart)
+            {
+                // set the text to inform the user they can trigger the conversation
+                VOManager.Instance.uiTextObject.text = "Press [E] to play the interview.";
+            }
+        }
+
         // if there are no triggers
-        if (!blnTriggerDoor && !blnDoorConvoStart)
+        if (!blnTriggerDoor && !blnDoorConvoStart && !blnTriggerLaptop && !blnLaptopInterviewStart)
         {
             // set the text to an empty string
             VOManager.Instance.uiTextObject.text = "";
