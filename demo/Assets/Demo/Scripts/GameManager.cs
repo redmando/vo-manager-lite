@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     // update is called once per frame
     void Update()
     {
+        // vo options
+        VOOptions();
+      
         // if the door trigger is on
         if (blnTriggerDoor)
         {
@@ -196,6 +199,32 @@ public class GameManager : MonoBehaviour
         {
             // set the text to an empty string
             VOManager.Instance.uiTextObject.text = "";
+        }
+    }
+
+    // vo options
+    private void VOOptions()
+    {
+        // if number 1 is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            // play audio normally
+            blnForcePlay = false;
+
+        // if number 2 is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            // play audio in force mode
+            blnForcePlay = false;
+
+        // if number 3 is pressed
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            // stop audio players
+            VOManager.Instance.Stop();
+
+            // turn of all triggers
+            blnDoorConvoStart = false;
+            blnLaptopInterviewStart = false;
+            blnRadioStart = false;
         }
     }
 }
