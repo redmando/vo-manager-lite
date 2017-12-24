@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 
 /// <summary>
-/// Player Controls - Description:
-/// Handles all player movement and input.
+/// Player Controls
+/// Description: Handles all player movement and input.
 /// </summary>
 
 public class PlayerControls : MonoBehaviour
@@ -113,13 +111,23 @@ public class PlayerControls : MonoBehaviour
                 GameManager.Instance.blnTriggerLaptop = false;
             }
 
-            // draw a line in the editor to indicate the raycast
-            Debug.DrawLine(Vector3.forward, hit.transform.position, Color.red);
+            // if the object is tagged radio
+            if (hit.transform.gameObject.tag == "Radio")
+            {
+                // set the game manager radio trigger to true
+                GameManager.Instance.blnTriggerRadio = true;
+            }
+            else if (hit.transform.gameObject.tag != "Radio")
+            {
+                // else set it to false
+                GameManager.Instance.blnTriggerRadio = false;
+            }
         } else
         {
             // set trigger to false
             GameManager.Instance.blnTriggerDoor = false;
             GameManager.Instance.blnTriggerLaptop = false;
+            GameManager.Instance.blnTriggerRadio = false;
         }
     }
 }

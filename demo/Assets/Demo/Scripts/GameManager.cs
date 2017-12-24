@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+
+/// <summary>
+/// Game Manager
+/// Description: Manages everthing in the game environment and triggers the VO Manager.
+/// </summary>
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +25,15 @@ public class GameManager : MonoBehaviour
     public AudioSource audSrcLaptop;   // the audio source for the laptop interview
     public bool blnTriggerLaptop; // check if the laptop interview is triggerable
     public bool blnLaptopInterviewStart;  // check if the laptop interview has started
+    public float fltDelayBetweenAudioLaptop = 1.0f;   // the delay between audio files
+    public int[] col_intLaptopInterview;  // an array to store the order for the laptop interview
+
+    [Header("Radio")]
+    public AudioSource audSrcRadio;   // the audio source for the radio
+    public bool blnTriggerRadio; // check if the radio is triggerable
+    public bool blnRadioStart;  // check if the radio has started
+    public float fltDelayBetweenAudioRadio = 1.0f;   // the delay between audio files
+    public int[] col_intRadio;  // an array to store the order for the radio
 
     // private variables
     private int m_intCurrentIndex;  // keep track of the current audio's index
@@ -115,6 +128,66 @@ public class GameManager : MonoBehaviour
             {
                 // set the text to inform the user they can trigger the conversation
                 VOManager.Instance.uiTextObject.text = "Press [E] to play the interview.";
+            }
+
+            // if the E key is pressed
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // if the laptop interview has not started
+                if (!blnLaptopInterviewStart)
+                {
+                    // start the interview and set index to 0
+                    blnLaptopInterviewStart = true;
+                    m_intCurrentIndex = 0;
+
+                    // set the delay between audio
+                    m_fltDelayBetweenAudio = 0;
+                }
+
+                // if the current mode is force play mode
+                if (blnForcePlay)
+                {
+                    // force play the first audio clip and set the index to 1
+                    blnLaptopInterviewStart = true;
+                    VOManager.Instance.ForcePlay(audSrcLaptop, col_intLaptopInterview[0]);
+                    m_intCurrentIndex = 1;
+
+                    // set the delay between audio
+                    m_fltDelayBetweenAudio = fltDelayBetweenAudioLaptop;
+                }
+            }
+        }
+
+        // if the laptop interview has started 
+        if (blnLaptopInterviewStart)
+        {
+            // if the audio source isn't playing
+            if (!VOManager.Instance.IsPlaying())
+            {
+                // if the current index is less than the list length
+                if (m_intCurrentIndex < col_intLaptopInterview.Length)
+                {
+                    // if the delay between audio files is 0
+                    if (m_fltDelayBetweenAudio <= 0)
+                    {
+                        // play the audio at the audio source and increment the index
+                        VOManager.Instance.Play(audSrcLaptop, col_intLaptopInterview[m_intCurrentIndex]);
+                        m_intCurrentIndex++;
+
+                        // set the default delay
+                        m_fltDelayBetweenAudio = fltDelayBetweenAudioLaptop;
+                    }
+                    else
+                    {
+                        // decrease the delay based on time
+                        m_fltDelayBetweenAudio -= Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    // set interview to false
+                    blnLaptopInterviewStart = false;
+                }
             }
         }
 
