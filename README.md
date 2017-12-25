@@ -1,19 +1,20 @@
-# VO Manager
-VO Manager is an open-source project open to the general public. VO Manager is a package written in C# for Unity3D that manages a bank of VOs (voice-overs) clips, sub-titles cues, and functionality that calls on these clips and cues.
+# VO Manager Lite
+VO Manager is a Unity Scripting Package which enables developers to rapidly create and prototype games around audio with dialogue. It streamlines the process of creating and displaying on screen subtitles along with your audio’s dialogue without the hassle of creating a complex system.
 
-_Copyright (c) 2016 tvledesign LLC. All rights reserved._
+_Copyright (c) 2018 tvledesign LLC. All rights reserved._
 
 ## Importing the Package
 
-There are two ways to import the VO Manager package. You can either:
+There are two ways to import the VO Manager Lite package. You can either:
 
 1. Visit the Unity Asset Store to download and import the package directly inside of Unity or;
-2. You can go to GitHub via https://github.com/tvledesignLLC/vo-manager and download one of the packages inside the packages folder.
+2. You can go to GitHub via [a https://github.com/tvledesign/vo-manager-lite](https://github.com/tvledesign/vo-manager-lite) and download one of the packages inside the packages folder.
 
-By default when importing from the Unity Asset Store the package also comes with a demo as well as the default VO Manager package which contains:
+By default when importing from the Unity Asset Store the package also comes with a demo as well as the default VO Manager Lite package which contains:
 
 * VOManager
    * Editor
+      * EditorClasses.cs
       * VOBankEditor.cs
       * VOManagerEditor.cs
    * Prefabs
