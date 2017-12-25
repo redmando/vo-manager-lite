@@ -1,14 +1,14 @@
 # VO Manager Lite
-VO Manager is a Unity Scripting Package which enables developers to rapidly create and prototype games around audio with dialogue. It streamlines the process of creating and displaying on screen subtitles along with your audio’s dialogue without the hassle of creating a complex system.
+VO Manager is a Unity Scripting Package which enables developers to rapidly create and prototype games around audio with dialogue. It streamlines the process of creating and displaying on-screen subtitles along with your audio’s dialogue without the hassle of creating a complex system.
 
-_Copyright (c) 2018 tvledesign LLC. All rights reserved._
+_Copyright (c) 2016 - 2018 tvledesign LLC. All rights reserved._
 
 ## Importing the Package
 
 There are two ways to import the VO Manager Lite package. You can either:
 
 1. Visit the Unity Asset Store to download and import the package directly inside of Unity or;
-2. You can go to GitHub via [a https://github.com/tvledesign/vo-manager-lite](https://github.com/tvledesign/vo-manager-lite) and download one of the packages inside the packages folder.
+2. You can go to GitHub via [https://github.com/tvledesign/vo-manager-lite](https://github.com/tvledesign/vo-manager-lite) and download one of the packages inside the packages folder.
 
 By default when importing from the Unity Asset Store the package also comes with a demo as well as the default VO Manager Lite package which contains:
 
@@ -66,48 +66,68 @@ Once you have finished setting up your VOManager, save your scene and do one of 
     
 ## Usage
 
-In order to use our VOManager we must make sure that our VOManager is always present in the scene at all times. We can make calls to our VOManager with the following lines:
+In order to use our VOManager, we must make sure that our VOManager is always present in the scene at all times. We can make calls to our VOManager with the following lines:
 
 ```csharp
-VOManager.Instance.Play(int id);
+VOManager.Instance.Play(int _id);
+VOManager.Instance.Play(string _name)
 ```
-Plays the dialogue clip normally. Running this function only works if there isn’t a current dialogue clip playing.
+VOManager.Instance.Play() takes in two different parameters. You can pass in either an integer ID or a string name that the audio clip has been assigned in the VOBank. Calling this function will play an audio clip normally. Running it again, however, would only work if there is currently no audio clips being played via the VOManager.
 
 ```csharp
-VOManager.Instance.PlayInterrupt(int id);
+VOManager.Instance.Play(AudioSource _audSrc, int _id);
+VOManager.Instance.Play(AudioSource _audSrc, string _name)
 ```
-Plays the dialogue clip in “interrupt” mode. Running this function immediately stops the current dialogue clip from playing (if any) and play in the new dialogue clip.
+Alongside being able to pass in either an integer ID or a string name, you also have the ability to pass in an external audio source. Calling the function with an external audio source will play the current audio clip at that target source. 
 
 ```csharp
-VOManager.Instance.Stop();
+VOManager.Instance.ForcePlay(int _id);
+VOManager.Instance.ForcePlay(string _name)
 ```
-Stops all dialog from playing.
+Like the normal play method, you can pass in either an integer ID or a string name that the audio clip has been assigned in the VOBank. Calling this function will immediately cut off any current audio clip that is being played.
 
-Simply replace “id” with any one of the ID numbers in our bank to play that clip. VOManager by default handles all subtitle text that appears on the screen so you don’t have to worry about scripting any kind of functionality. Once a dialogue
+```csharp
+VOManager.Instance.ForcePlay(AudioSource _audSrc, int _id);
+VOManager.Instance.ForcePlay(AudioSource _audSrc, string _name)
+```
+Similar to the play method, calling the VOManager.Instance.ForcePlay() function with an external audio source will play the current audio clip at the target source. However, calling this while an audio clip is playing from the VOManager will immediately cut it off.
+
+```csharp
+VOManager.Instance.IsPlaying()
+```
+Calling VOManager.Instance.IsPlaying() will return a boolean either true or false. This method checks to see if an audio clip is being played from the VOManager.
+
+```csharp
+VOManager.Instance.Stop()
+```
+Calling the VOManager.Instance.Stop() method will immediately stop any audio clip being played from the VOManager.
+
+VOManager by default handles all subtitle text that appears on the screen so you don’t have to worry about scripting any kind of functionality.
 
 ## Useful Links
 If you have any questions, feedback, or issues, please feel free to contact me via:
 
 * Email at [tvledesign@gmail.com](mailto:tvledesign@gmail.com) or;
-* Go to the GitHub Repo at [https://github.com/tvledesignLLC/vo-manager](https://github.com/tvledesignLLC/vo-manager)
+* Go to the GitHub Repo at [https://github.com/tvledesign/vo-manager-lite](https://github.com/tvledesign/vo-manager-lite)
 
 Additionally to learn more or find tutorials you can go to:
 
-* Website at [http://www.tvledesign.com](http://www.tvledesign.com)
-* Blog at [http://blog.tvledesign.com](http://blog.tvledesign.com)
-* YouTube Channel at [https://www.youtube.com/user/tvledesign](https://www.youtube.com/user/tvledesign)
+* Website at [https://www.tvledesign.com](https://www.tvledesign.com)
+* Blog at [https://www.tonyvle.com](https://www.tonyvle.com)
+* YouTube Channel at [https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w](https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w)
     
 ## Special Thanks
 Special thanks to these wonderful people who helped contribute to this project:
 
-* Cameron Cintron at [http://ccgamedesign.com/](http://ccgamedesign.com/) for giving me permission to use the models for the demo scene (which are free to the general public and created during the Global Game Jam 2016 that we took part of)
-* Joseph Song for helping with voice overs.
+* Gareth Lynch for helping out with the 3D modeling and modeling the entire demoscene.
+* Joe Song for helping with voice-overs on the original VO Manager and producing music while editing our audio clips for the VO Manager Lite.
+* Cameron Cintron at [http://ccgamedesign.com/](http://ccgamedesign.com/) for allowing me to use his models for the original VO Manager.
 
 Especially to those who were on my team at the Global Game Jam 2016 which inspired me to create VO Manager:
 
 * Cameron Cintron at [http://ccgamedesign.com/](http://ccgamedesign.com/)
 * Jessica Borlovan at [http://jmborlovan.com/](http://jmborlovan.com/)
-* Joseph Song
+* Joe Song
 * Neal Shaw at [http://nealryanshaw.com/](http://nealryanshaw.com/)
     
 Last but not least these wonderful organizations that made this idea possible:
