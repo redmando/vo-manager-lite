@@ -116,14 +116,14 @@ Additionally to learn more or find tutorials you can go to:
 * Blog at [https://www.tonyvle.com](https://www.tonyvle.com)
 * YouTube Channel at [https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w](https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w)
     
+## Credits
+
+* Tony V. Le - Lead
+* Gareth Lynch - Artist
+* Joe Song - Audio
+
 ## Special Thanks
-Special thanks to these wonderful people who helped contribute to this project:
-
-* Gareth Lynch for helping out with the 3D modeling and modeling the entire demoscene.
-* Joe Song for helping with voice-overs on the original VO Manager and producing music while editing our audio clips for the VO Manager Lite.
-* Cameron Cintron at [http://ccgamedesign.com/](http://ccgamedesign.com/) for allowing me to use his models for the original VO Manager.
-
-Especially to those who were on my team at the Global Game Jam 2016 which inspired me to create VO Manager:
+Special thanks to these wonderful people who were on my team at the Global Game Jam 2016 which inspired me to create VO Manager:
 
 * Cameron Cintron at [http://ccgamedesign.com/](http://ccgamedesign.com/)
 * Jessica Borlovan at [http://jmborlovan.com/](http://jmborlovan.com/)
