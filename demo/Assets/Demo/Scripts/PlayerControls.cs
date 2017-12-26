@@ -14,7 +14,7 @@ public class PlayerControls : MonoBehaviour
 
     // private variables
     private Vector3 m_vecMoveDirection;             // the player's current direction
-    private float m_fltClampAngle = 50.0f;          // angle of which to clamp camera
+    private float m_fltClampAngle = 25.0f;          // angle of which to clamp camera
     private float m_fltRotationX = 0.0f;            // x axis of rotation
     private float m_fltRotationY = 0.0f;            // y axis of rotation
     private CharacterController m_charController;   // the character controller of this object
