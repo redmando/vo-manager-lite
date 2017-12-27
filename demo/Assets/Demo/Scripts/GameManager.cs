@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
             // if the laptop conversation has not started
             if (!blnLaptopInterviewStart)
             {
-                // set the text to inform the user they can trigger the conversation
+                // set the text to inform the user they can trigger the interview
                 VOManager.Instance.uiTextObject.text = "Press [E] to play the interview.";
             }
 
@@ -190,6 +190,77 @@ public class GameManager : MonoBehaviour
                 {
                     // set interview to false
                     blnLaptopInterviewStart = false;
+                }
+            }
+        }
+
+        // if the radio trigger is on
+        if (blnTriggerRadio)
+        {
+            // if the radio has not started
+            if (!blnRadioStart)
+            {
+                // set the text to inform the user they can trigger the radio
+                VOManager.Instance.uiTextObject.text = "Press [E] to turn on the radio.";
+            }
+
+            // if the E key is pressed
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // if the radio has not started
+                if (!blnRadioStart)
+                {
+                    // start the radio and set index to 0
+                    blnRadioStart = true;
+                    m_intCurrentIndex = 0;
+
+                    // set the delay between audio
+                    m_fltDelayBetweenAudio = 0;
+                }
+
+                // if the current mode is force play mode
+                if (blnForcePlay)
+                {
+                    // force play the first audio clip and set the index to 1
+                    blnRadioStart = true;
+                    VOManager.Instance.ForcePlay(audSrcRadio, col_intRadio[0]);
+                    m_intCurrentIndex = 1;
+
+                    // set the delay between audio
+                    m_fltDelayBetweenAudio = fltDelayBetweenAudioRadio;
+                }
+            }
+        }
+
+        // if the radio has started 
+        if (blnRadioStart)
+        {
+            // if the audio source isn't playing
+            if (!VOManager.Instance.IsPlaying())
+            {
+                // if the current index is less than the list length
+                if (m_intCurrentIndex < col_intRadio.Length)
+                {
+                    // if the delay between audio files is 0
+                    if (m_fltDelayBetweenAudio <= 0)
+                    {
+                        // play the audio at the audio source and increment the index
+                        VOManager.Instance.Play(audSrcLaptop, col_intRadio[m_intCurrentIndex]);
+                        m_intCurrentIndex++;
+
+                        // set the default delay
+                        m_fltDelayBetweenAudio = fltDelayBetweenAudioRadio;
+                    }
+                    else
+                    {
+                        // decrease the delay based on time
+                        m_fltDelayBetweenAudio -= Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    // set radio to false
+                    blnRadioStart = false;
                 }
             }
         }
