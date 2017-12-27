@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
         }
 
         // if there are no triggers
-        if (!blnTriggerDoor && !blnDoorConvoStart && !blnTriggerLaptop && !blnLaptopInterviewStart)
+        if (!blnTriggerDoor && !blnDoorConvoStart && !blnTriggerLaptop && !blnLaptopInterviewStart && !blnTriggerRadio && !blnRadioStart)
         {
             // set the text to an empty string
             VOManager.Instance.uiTextObject.text = "";
