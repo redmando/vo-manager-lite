@@ -245,7 +245,7 @@ public class GameManager : MonoBehaviour
                     if (m_fltDelayBetweenAudio <= 0)
                     {
                         // play the audio at the audio source and increment the index
-                        VOManager.Instance.Play(audSrcLaptop, col_intRadio[m_intCurrentIndex]);
+                        VOManager.Instance.Play(audSrcRadio, col_intRadio[m_intCurrentIndex]);
                         m_intCurrentIndex++;
 
                         // set the default delay
