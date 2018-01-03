@@ -93,6 +93,7 @@ public class PlayerControls : MonoBehaviour
             {
                 // set the game manager door trigger to true
                 GameManager.Instance.blnTriggerDoor = true;
+                GameManager.Instance.blnInstructionsTriggered = true;
             } else if (hit.transform.gameObject.tag != "Door")
             {
                 // else set it to false
@@ -104,6 +105,7 @@ public class PlayerControls : MonoBehaviour
             {
                 // set the game manager laptop trigger to true
                 GameManager.Instance.blnTriggerLaptop = true;
+                GameManager.Instance.blnInstructionsTriggered = true;
             }
             else if (hit.transform.gameObject.tag != "Laptop")
             {
@@ -116,15 +118,43 @@ public class PlayerControls : MonoBehaviour
             {
                 // set the game manager radio trigger to true
                 GameManager.Instance.blnTriggerRadio = true;
+                GameManager.Instance.blnInstructionsTriggered = true;
             }
             else if (hit.transform.gameObject.tag != "Radio")
             {
                 // else set it to false
                 GameManager.Instance.blnTriggerRadio = false;
             }
+
+            // if the object is tagged bed
+            if (hit.transform.gameObject.tag == "Bed")
+            {
+                // set the game manager bed trigger to true
+                GameManager.Instance.blnTriggerBed = true;
+                GameManager.Instance.blnInstructionsTriggered = true;
+            }
+            else if (hit.transform.gameObject.tag != "Bed")
+            {
+                // else set it to false
+                GameManager.Instance.blnTriggerBed = false;
+            }
+
+            // if the object is tagged bookshelf
+            if (hit.transform.gameObject.tag == "Bookshelf")
+            {
+                // set the game manager bookshelf trigger to true
+                GameManager.Instance.blnTriggerBookshelf = true;
+                GameManager.Instance.blnInstructionsTriggered = true;
+            }
+            else if (hit.transform.gameObject.tag != "Bookshelf")
+            {
+                // else set it to false
+                GameManager.Instance.blnTriggerBookshelf = false;
+            }
         } else
         {
             // set trigger to false
+            GameManager.Instance.blnInstructionsTriggered = false;
             GameManager.Instance.blnTriggerDoor = false;
             GameManager.Instance.blnTriggerLaptop = false;
             GameManager.Instance.blnTriggerRadio = false;
