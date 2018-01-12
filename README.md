@@ -118,7 +118,7 @@ Additionally to learn more or find tutorials you can go to:
     
 ## Credits
 
-* Tony V. Le - Lead
+* Tony V. Le - Developer
 * Gareth Lynch - Artist
 * Joe Song - Audio
 
