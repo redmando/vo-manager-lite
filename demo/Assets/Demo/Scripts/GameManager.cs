@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -19,20 +20,22 @@ public class GameManager : MonoBehaviour
     public bool blnSelfAudioTriggered;  // check if first person audio is triggered
     public Text txtAudioMode;    // display the current audio mode
     public Text txtSecondary;   // secondary text incase main vo is taken up
-
+    
     [Header("Door")]
     public AudioSource audSrcDoor;   // the audio source for the door conversation
     public bool blnTriggerDoor; // check if the door audio is triggerable
     public bool blnDoorAudioTriggered;  // check if the door conversation has been triggered
     public float fltDelayBetweenAudioDoor = 1.0f;   // the delay between audio files
     public int[] col_intHangingPictureConvo;  // an array to store the order for the hanging picture conversation
+    public GameObject goDoorBreadcrumb; // breadcrumb for door
 
     [Header("Laptop")]
     public AudioSource audSrcLaptop;   // the audio source for the laptop interview
     public bool blnTriggerLaptop; // check if the laptop interview is triggerable
     public bool blnLaptopAudioTriggered;    // check if the laptop audio is triggered
     public float fltDelayBetweenAudioLaptop = 1.0f;   // the delay between audio files
-    public int[] col_intLaptopInterview;  // an array to store the order for the laptop interview
+    public int[] col_intLaptopInterview;  // an array to store the order for the laptop interview.
+    public GameObject goLaptopBreadcrumb; // breadcrumb for laptop
 
     [Header("Radio")]
     public AudioSource audSrcRadio;   // the audio source for the radio
@@ -40,18 +43,23 @@ public class GameManager : MonoBehaviour
     public bool blnRadioAudioTriggered;    // check if the radio audio is triggered
     public float fltDelayBetweenAudioRadio = 1.0f;   // the delay between audio files
     public int[] col_intRadio;  // an array to store the order for the radio
+    public GameObject goRadioBreadcrumb; // breadcrumb for radio
 
     [Header("Bookshelf")]
     public bool blnTriggerBookshelf; // check if the bookshelf is triggerable
     public string[] col_strBookshelf;  // an array to store our different bookshelf audio clips
+    public GameObject goBookshelfBreadcrumb; // breadcrumb for bookshelf
 
     [Header("Bed")]
     public bool blnTriggerBed; // check if the bed is triggerable
     public string[] col_strBed;  // an array to store our different bed audio clips
+    public GameObject goBedBreadcrumb; // breadcrumb for bed
 
     // private variables
     private int m_intCurrentIndex;  // keep track of the current audio's index
     private float m_fltDelayBetweenAudio;   // the delay between audio files
+    private int m_intBedIndex;  // keep track of which audio is playing
+    private int m_intBookshelfIndex;  // keep track of which audio is playing
 
     // when the instance is loaded
     private void Awake()
@@ -107,6 +115,13 @@ public class GameManager : MonoBehaviour
             // empty the field
             txtSecondary.text = "";
         }
+
+        // if the r key is pressed
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
     }
 
     // turn off all other triggers and audio
@@ -142,6 +157,11 @@ public class GameManager : MonoBehaviour
             // if the E key is pressed
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // disable breadcrumb if it has not been
+                if (goDoorBreadcrumb.activeInHierarchy)
+                    // disable it
+                    goDoorBreadcrumb.SetActive(false);
+
                 // if a converstation has not started
                 if (!blnConvoStart)
                 {
@@ -232,6 +252,11 @@ public class GameManager : MonoBehaviour
             // if the E key is pressed
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // disable breadcrumb if it has not been
+                if (goLaptopBreadcrumb.activeInHierarchy)
+                    // disable it
+                    goLaptopBreadcrumb.SetActive(false);
+
                 // if a converstation has not started
                 if (!blnConvoStart)
                 {
@@ -322,6 +347,11 @@ public class GameManager : MonoBehaviour
             // if the E key is pressed
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // disable breadcrumb if it has not been
+                if (goRadioBreadcrumb.activeInHierarchy)
+                    // disable it
+                    goRadioBreadcrumb.SetActive(false);
+
                 // if a converstation has not started
                 if (!blnConvoStart)
                 {
@@ -422,15 +452,44 @@ public class GameManager : MonoBehaviour
                     // if the trigger is the bed
                     if(blnTriggerBed)
                     {
+                        // disable breadcrumb if it has not been
+                        if (goBedBreadcrumb.activeInHierarchy)
+                            // disable it
+                            goBedBreadcrumb.SetActive(false);
+
                         // play a random clip from the list
-                        VOManager.Instance.Play(col_strBed[Random.Range(0, col_strBed.Length)]);
+                        VOManager.Instance.Play(col_strBed[m_intBedIndex]);
+
+                        // increase bed index
+                        if(m_intBedIndex == 2)
+                        {
+                            m_intBedIndex = 0;
+                        } else
+                        {
+                            m_intBedIndex++;
+                        }
                     }
 
                     // else if the trigger is the bookshelf
                     else if (blnTriggerBookshelf)
                     {
+                        // disable breadcrumb if it has not been
+                        if (goBookshelfBreadcrumb.activeInHierarchy)
+                            // disable it
+                            goBookshelfBreadcrumb.SetActive(false);
+
                         // play a random clip from the list
-                        VOManager.Instance.Play(col_strBookshelf[Random.Range(0, col_strBookshelf.Length)]);
+                        VOManager.Instance.Play(col_strBookshelf[m_intBookshelfIndex]);
+
+                        // increase bookshelf index
+                        if (m_intBookshelfIndex == 2)
+                        {
+                            m_intBookshelfIndex = 0;
+                        }
+                        else
+                        {
+                            m_intBookshelfIndex++;
+                        }
                     }
                 }
 
@@ -447,15 +506,45 @@ public class GameManager : MonoBehaviour
                     // if the trigger is the bed
                     if (blnTriggerBed)
                     {
+                        // disable breadcrumb if it has not been
+                        if (goBedBreadcrumb.activeInHierarchy)
+                            // disable it
+                            goBedBreadcrumb.SetActive(false);
+
                         // play a random clip from the list
-                        VOManager.Instance.ForcePlay(col_strBed[Random.Range(0, col_strBed.Length)]);
+                        VOManager.Instance.ForcePlay(col_strBed[m_intBedIndex]);
+
+                        // increase bed index
+                        if (m_intBedIndex == 2)
+                        {
+                            m_intBedIndex = 0;
+                        }
+                        else
+                        {
+                            m_intBedIndex++;
+                        }
                     }
 
                     // else if the trigger is the bookshelf
                     else if (blnTriggerBookshelf)
                     {
+                        // disable breadcrumb if it has not been
+                        if (goBookshelfBreadcrumb.activeInHierarchy)
+                            // disable it
+                            goBookshelfBreadcrumb.SetActive(false);
+
                         // play a random clip from the list
-                        VOManager.Instance.ForcePlay(col_strBookshelf[Random.Range(0, col_strBookshelf.Length)]);
+                        VOManager.Instance.ForcePlay(col_strBookshelf[m_intBookshelfIndex]);
+
+                        // increase bookshelf index
+                        if (m_intBookshelfIndex == 2)
+                        {
+                            m_intBookshelfIndex = 0;
+                        }
+                        else
+                        {
+                            m_intBookshelfIndex++;
+                        }
                     }
                 }
             }
