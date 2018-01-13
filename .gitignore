@@ -5,3 +5,5 @@ demo/Assembly-CSharp.csproj
 demo/demo.sln
 demo/obj
 demo/.vs
+builds/Windows/player_win_x86.pdb
+builds/Windows/player_win_x86_s.pdb
