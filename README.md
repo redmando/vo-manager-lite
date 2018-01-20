@@ -25,12 +25,10 @@ If you've chosen to import the package from Unity or from the GitHub, depending 
    * ReadMe.pdf
         
 ## Setup
-To set up our VOManager you have two of the following options. You can either:
+In order to use our VOManager, we must first make sure that our manager is present on the scene at all time. To set up a new manager you can either:
 
-1. Create a new empty GameObject in the Hierarchy and drop the VOBank script or the VOManager script onto it or;
-2. You can go into the Project panel and into the Prefabs folder and drag and drop the VOManager prefab into the Hierarchy.
-
-By default when adding the VOBank script or the VOManager script onto a new object an Audio Source component will be added automatically along with one or the other script since they are dependent on each other. You should see a similar interface below when you’ve successfully setup the initial VOManager.
+1. Create a new empty GameObject in the Hierarchy and drag and drop the VOBank script onto the newly made gameobject or;
+2. You can go into the prefabs folder in the project panel and simply drag and drop the VOManager prefab into the Hierarchy.
 
 ![VOManager GameObject](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/v1.0/ss-1.png)
 
