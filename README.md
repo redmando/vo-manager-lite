@@ -83,7 +83,9 @@ The example above is a set of the same except the major difference is they both 
 VOManager.Instance.Play(AudioSource _audSrc, int _id);
 VOManager.Instance.Play(AudioSource _audSrc, string _name)
 ```
-Alongside being able to pass in either an integer ID or a string name, you also have the ability to pass in an external audio source. Calling the function with an external audio source will play the current audio clip at that target source. 
+The second set is very identical to the ones above except it takes in a second parameter which is an audio source. By passing through an audio source you are able to play an audio from an external source instead of the one attached to the VOManager. This allows for more control over the 3D sound.
+
+### Force Play Mode
 
 ```csharp
 VOManager.Instance.ForcePlay(int _id);
