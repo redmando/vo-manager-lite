@@ -87,17 +87,20 @@ The second set is very identical to the ones above except it takes in a second p
 
 ### Force Play Mode
 
+Just like our regular play mode, force play mode takes in the same type of parameters to trigger an audio. This parameter takes in either an integer or a string. The biggest difference between Play and Force Play mode is that calling the force play function immediately cuts off the current audio that is playing and plays the new on that is called.
+
 ```csharp
 VOManager.Instance.ForcePlay(int _id);
 VOManager.Instance.ForcePlay(string _name)
 ```
-Like the normal play method, you can pass in either an integer ID or a string name that the audio clip has been assigned in the VOBank. Calling this function will immediately cut off any current audio clip that is being played.
+Much like the functions above, force play mode also takes in an external audio source.
 
 ```csharp
 VOManager.Instance.ForcePlay(AudioSource _audSrc, int _id);
 VOManager.Instance.ForcePlay(AudioSource _audSrc, string _name)
 ```
-Similar to the play method, calling the VOManager.Instance.ForcePlay() function with an external audio source will play the current audio clip at the target source. However, calling this while an audio clip is playing from the VOManager will immediately cut it off.
+
+### Checks
 
 ```csharp
 VOManager.Instance.IsPlaying()
