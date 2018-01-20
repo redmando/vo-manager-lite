@@ -158,6 +158,8 @@ public class PlayerControls : MonoBehaviour
             GameManager.Instance.blnTriggerDoor = false;
             GameManager.Instance.blnTriggerLaptop = false;
             GameManager.Instance.blnTriggerRadio = false;
+            GameManager.Instance.blnTriggerBed = false;
+            GameManager.Instance.blnTriggerBookshelf = false;
         }
     }
 }
