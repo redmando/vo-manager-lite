@@ -371,6 +371,7 @@ public class VOManager : MonoBehaviour
             // stop the enteral audio source and remove the clip
             m_externalAudSrc.Stop();
             m_externalAudSrc.clip = null;
+            m_externalAudSrc = null;
         }
         else
         {
