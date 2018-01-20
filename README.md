@@ -137,12 +137,12 @@ Additionally to learn more or find tutorials you can go to:
 ## Special Thanks
 Special thanks to these wonderful people who were on my team at the Global Game Jam 2016 which inspired me to create the VO Manager:
 
-* Cameron Cintron at [http://ccgamedesign.com/](http://ccgamedesign.com/)
-* Jessica Borlovan at [http://jmborlovan.com/](http://jmborlovan.com/)
+* Cameron Cintron 
+* Jessica Borlovan
 * Joe Song
-* Neal Shaw at [http://nealryanshaw.com/](http://nealryanshaw.com/)
+* Neal Shaw 
     
 Last but not least these wonderful organizations that made this idea possible:
 
-* Global Game Jam at [http://globalgamejam.org/](http://globalgamejam.org/)
-* Petal et Al at [http://petaletal.org/](http://petaletal.org/)
+* Global Game Jam 
+* Petal et Al 
