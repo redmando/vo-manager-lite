@@ -71,15 +71,13 @@ There are currently two ways to trigger an audio through the VO Manager. Those a
 
 ### Play Mode
 
-Play mode can be called in 4 different ways. 
-
-In order to use our VOManager, we must make sure that our VOManager is always present in the scene at all times. We can make calls to our VOManager with the following lines:
+Play mode can be called in 4 different ways and triggers audio calls normally. This means that once you make a call to the play function, you can not make another one until the function is done playing.
 
 ```csharp
 VOManager.Instance.Play(int _id);
 VOManager.Instance.Play(string _name)
 ```
-VOManager.Instance.Play() takes in two different parameters. You can pass in either an integer ID or a string name that the audio clip has been assigned in the VOBank. Calling this function will play an audio clip normally. Running it again, however, would only work if there is currently no audio clips being played via the VOManager.
+The example above is a set of the same except the major difference is they both take in a different type of parameter. One takes in an integer while the other takes in a string. You can call an audio to play by passing through its ID or its assign Name.
 
 ```csharp
 VOManager.Instance.Play(AudioSource _audSrc, int _id);
