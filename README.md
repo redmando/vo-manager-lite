@@ -102,17 +102,19 @@ VOManager.Instance.ForcePlay(AudioSource _audSrc, string _name)
 
 ### Checks
 
+If at any given time you need to check if an audio is playing, you can call the is playing function which return a boolean value of true or false.
+
 ```csharp
 VOManager.Instance.IsPlaying()
 ```
-Calling VOManager.Instance.IsPlaying() will return a boolean either true or false. This method checks to see if an audio clip is being played from the VOManager.
+
+### Stop
+
+Calling the stop functionality simply just stops all current audio sources that are playing and subtitles drawn on-screen.
 
 ```csharp
 VOManager.Instance.Stop()
 ```
-Calling the VOManager.Instance.Stop() method will immediately stop any audio clip being played from the VOManager.
-
-VOManager by default handles all subtitle text that appears on the screen so you don’t have to worry about scripting any kind of functionality.
 
 ## Useful Links
 If you have any questions, feedback, or issues, please feel free to contact me via:
