@@ -64,6 +64,11 @@ Once you have finished setting up your VOManager, save your scene and do one of 
     
 ## Usage
 
+There are currently two ways to trigger an audio through the VO Manager. Those are:
+
+1. Play Mode
+2. Force Play Mode
+
 In order to use our VOManager, we must make sure that our VOManager is always present in the scene at all times. We can make calls to our VOManager with the following lines:
 
 ```csharp
