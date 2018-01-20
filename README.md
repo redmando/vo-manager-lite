@@ -135,7 +135,7 @@ Additionally to learn more or find tutorials you can go to:
 * Joe Song - Audio
 
 ## Special Thanks
-Special thanks to these wonderful people who were on my team at the Global Game Jam 2016 which inspired me to create VO Manager:
+Special thanks to these wonderful people who were on my team at the Global Game Jam 2016 which inspired me to create the VO Manager:
 
 * Cameron Cintron at [http://ccgamedesign.com/](http://ccgamedesign.com/)
 * Jessica Borlovan at [http://jmborlovan.com/](http://jmborlovan.com/)
