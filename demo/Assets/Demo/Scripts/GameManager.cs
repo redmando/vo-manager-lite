@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
         blnDoorAudioTriggered = false;
         blnLaptopAudioTriggered = false;
         blnRadioAudioTriggered = false;
+        blnSelfAudioTriggered = false;
     }
 
     // door conversation
@@ -459,7 +460,6 @@ public class GameManager : MonoBehaviour
 
                         // play a random clip from the list
                         VOManager.Instance.Play(col_strBed[m_intBedIndex]);
-                        blnTriggerBed = false;
 
                         // increase bed index
                         if (m_intBedIndex == 2)
@@ -481,7 +481,6 @@ public class GameManager : MonoBehaviour
 
                         // play a random clip from the list
                         VOManager.Instance.Play(col_strBookshelf[m_intBookshelfIndex]);
-                        blnTriggerBookshelf = false;
 
                         // increase bookshelf index
                         if (m_intBookshelfIndex == 2)
@@ -515,8 +514,7 @@ public class GameManager : MonoBehaviour
 
                         // play a random clip from the list
                         VOManager.Instance.ForcePlay(col_strBed[m_intBedIndex]);
-                        blnTriggerBed = false;
-
+        
                         // increase bed index
                         if (m_intBedIndex == 2)
                         {
@@ -538,8 +536,7 @@ public class GameManager : MonoBehaviour
 
                         // play a random clip from the list
                         VOManager.Instance.ForcePlay(col_strBookshelf[m_intBookshelfIndex]);
-                        blnTriggerBookshelf = false;
-
+                 
                         // increase bookshelf index
                         if (m_intBookshelfIndex == 2)
                         {
