@@ -19,7 +19,7 @@ public class VOManager : MonoBehaviour
     private AudioSource m_audSrc;   // get a reference to our default audio source
     private AudioSource m_externalAudSrc;   // get a reference to our external audio source if there is any
     private bool m_blnAudioTriggered;   // check if our audio is playing or not
-    private float m_fltDialogueTimer;   // keep track of how long a dialogue should be displayed
+    private float m_fltSubtitleTimer;   // keep track of how long a subtitle should be displayed
 
     // on loaded
     void Awake()
@@ -63,7 +63,7 @@ public class VOManager : MonoBehaviour
                     // reset the audio source
                     m_audSrc.clip = null;
 
-                    // reset the dialogue
+                    // reset the subtitle
                     uiTextObject.text = "";
 
                     // reset the trigger
@@ -80,7 +80,7 @@ public class VOManager : MonoBehaviour
                     m_externalAudSrc.clip = null;
                     m_externalAudSrc = null;
 
-                    // reset the dialogue
+                    // reset the subtitle
                     uiTextObject.text = "";
 
                     // reset the trigger
@@ -139,17 +139,17 @@ public class VOManager : MonoBehaviour
                 ClipProperties clip = FindAudioByID(_id);
 
                 // set the source and play the audio
-                m_audSrc.clip = clip.audClpDialogue;
+                m_audSrc.clip = clip.audClp;
                 m_audSrc.Play();
                 m_blnAudioTriggered = true;
 
-                // display the dialogue
-                uiTextObject.text = clip.dialogue;
+                // display the subtitle
+                uiTextObject.text = clip.subtitle;
             }
             catch
             {
                 // throw a warning
-                Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+                Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
             }
         }
     }
@@ -172,17 +172,17 @@ public class VOManager : MonoBehaviour
 
                 // set the source and play the audio
                 m_externalAudSrc = _audSrc;
-                m_externalAudSrc.clip = clip.audClpDialogue;
+                m_externalAudSrc.clip = clip.audClp;
                 m_externalAudSrc.Play();
                 m_blnAudioTriggered = true;
 
-                // display the dialogue
-                uiTextObject.text = clip.dialogue;
+                // display the subtitle
+                uiTextObject.text = clip.subtitle;
             }
             catch
             {
                 // throw a warning
-                Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+                Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
             }
         }
     }
@@ -204,17 +204,17 @@ public class VOManager : MonoBehaviour
                 ClipProperties clip = FindAudioByName(_name);
 
                 // set the source and play the audio
-                m_audSrc.clip = clip.audClpDialogue;
+                m_audSrc.clip = clip.audClp;
                 m_audSrc.Play();
                 m_blnAudioTriggered = true;
 
-                // display the dialogue
-                uiTextObject.text = clip.dialogue;
+                // display the subtitle
+                uiTextObject.text = clip.subtitle;
             }
             catch
             {
                 // throw a warning
-                Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+                Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
             }
         }
     }
@@ -237,17 +237,17 @@ public class VOManager : MonoBehaviour
 
                 // set the source and play the audio
                 m_externalAudSrc = _audSrc;
-                m_externalAudSrc.clip = clip.audClpDialogue;
+                m_externalAudSrc.clip = clip.audClp;
                 m_externalAudSrc.Play();
                 m_blnAudioTriggered = true;
 
-                // display the dialogue
-                uiTextObject.text = clip.dialogue;
+                // display the subtitle
+                uiTextObject.text = clip.subtitle;
             }
             catch
             {
                 // throw a warning
-                Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+                Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
             }
         }
     }
@@ -265,17 +265,17 @@ public class VOManager : MonoBehaviour
             ClipProperties clip = FindAudioByID(_id);
 
             // set the source and play the audio
-            m_audSrc.clip = clip.audClpDialogue;
+            m_audSrc.clip = clip.audClp;
             m_audSrc.Play();
             m_blnAudioTriggered = true;
 
-            // display the dialogue
-            uiTextObject.text = clip.dialogue;
+            // display the subtitle
+            uiTextObject.text = clip.subtitle;
         }
         catch
         {
             // throw a warning
-            Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+            Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
         }
     }
 
@@ -293,17 +293,17 @@ public class VOManager : MonoBehaviour
 
             // set the source and play the audio
             m_externalAudSrc = _audSrc;
-            m_externalAudSrc.clip = clip.audClpDialogue;
+            m_externalAudSrc.clip = clip.audClp;
             m_externalAudSrc.Play();
             m_blnAudioTriggered = true;
 
-            // display the dialogue
-            uiTextObject.text = clip.dialogue;
+            // display the subtitle
+            uiTextObject.text = clip.subtitle;
         }
         catch
         {
             // throw a warning
-            Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+            Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
         }
     }
 
@@ -320,17 +320,17 @@ public class VOManager : MonoBehaviour
             ClipProperties clip = FindAudioByName(_name);
 
             // set the source and play the audio
-            m_audSrc.clip = clip.audClpDialogue;
+            m_audSrc.clip = clip.audClp;
             m_audSrc.Play();
             m_blnAudioTriggered = true;
 
-            // display the dialogue
-            uiTextObject.text = clip.dialogue;
+            // display the subtitle
+            uiTextObject.text = clip.subtitle;
         }
         catch
         {
             // throw a warning
-            Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+            Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
         }
     }
 
@@ -348,17 +348,17 @@ public class VOManager : MonoBehaviour
 
             // set the source and play the audio
             m_externalAudSrc = _audSrc;
-            m_externalAudSrc.clip = clip.audClpDialogue;
+            m_externalAudSrc.clip = clip.audClp;
             m_externalAudSrc.Play();
             m_blnAudioTriggered = true;
 
-            // display the dialogue
-            uiTextObject.text = clip.dialogue;
+            // display the subtitle
+            uiTextObject.text = clip.subtitle;
         }
         catch
         {
             // throw a warning
-            Debug.LogError("There has been an error playing your dialogue. Please double check and make sure the VO Bank and Manager is configured correctly.");
+            Debug.LogError("There has been an error playing your audio clip. Please double check and make sure the VO Bank and Manager is configured correctly.");
         }
     }
 
