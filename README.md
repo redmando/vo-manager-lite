@@ -30,7 +30,7 @@ In order to use our VO Manager, we must first make sure that our manager is pres
 1. Create a new empty GameObject in the Hierarchy and drag and drop the VO Bank or VO Manager script onto the newly made gameobject or;
 2. You can go into the prefabs folder in the project panel and simply drag and drop the VO Manager prefab into the Hierarchy.
 
-![VOManager GameObject](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/v1.0/ss-1.png)
+![VOManager GameObject](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/ss-1.png)
 
 Now before we can begin using VOManager we must first start adding VO (voice-over) clips to our VOBank and any subtitle dialogue that we may want to come with it. To do so, click on VOManager in the Hierarchy and press the “Add Clip” button under VOBank. You should see a similar interface below once you click on the add clip button.
 
