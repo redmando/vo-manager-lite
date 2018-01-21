@@ -8,7 +8,7 @@ _Copyright (c) 2016 - 2018 tvledesign LLC. All rights reserved._
 
 There are two ways to import the VO Manager package. You can choose to either:
 
-1. Visit the Unity Asset Store to download and directly import the package into Unity at [https://assetstore.unity.com/packages/tools/audio/vo-manager-56002](https://assetstore.unity.com/packages/tools/audio/vo-manager-56002) or;
+1. Visit the Unity Asset Store to download and directly import the package into Unity at [	https://www.assetstore.unity3d.com/#!/content/56002](	https://www.assetstore.unity3d.com/#!/content/56002) or;
 2. You can go to the GitHub repository at [https://github.com/tvledesign/vo-manager-lite](https://github.com/tvledesign/vo-manager-lite) and download one of the packages inside the packages folder and import it into Unity.
 
 If you've chosen to import the package from Unity or from the GitHub, depending on which package on GitHub you've used, it comes with a demo scene as well as the core VO Manager files which contain:
