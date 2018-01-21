@@ -77,13 +77,13 @@ Play mode can be called in 4 different ways and triggers audio calls normally. T
 VOManager.Instance.Play(int _id);
 VOManager.Instance.Play(string _name)
 ```
-The example above is a set of the same except the major difference is they both take in a different type of parameter. One takes in an integer while the other takes in a string. You can call an audio to play by passing through its ID or its assign Name.
+The example above is a set of the same except the major difference is that they both take in a different type of parameter. One takes in an integer while the other takes in a string. You can call an audio to play by passing through its ID or its assign Name.
 
 ```csharp
 VOManager.Instance.Play(AudioSource _audSrc, int _id);
 VOManager.Instance.Play(AudioSource _audSrc, string _name)
 ```
-The second set is very identical to the ones above except it takes in a second parameter which is an audio source. By passing through an audio source you are able to play an audio from an external source instead of the one attached to the VOManager. This allows for more control over the 3D sound.
+The second set is very identical to the ones above except it takes in a second parameter which is an audio source. By passing through an audio source you are able to play an audio from an external source instead of the one attached to the VO Manager. This allows for more control over the 3D sound.
 
 ### Force Play Mode
 
