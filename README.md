@@ -1,7 +1,5 @@
 # VO Manager Lite
 
-![VO Manager Lite](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/graphics/Logo.png | width: 100)
-
 VO Manager is a Unity Scripting Package which enables developers to rapidly create and prototype games around the usage of audio and subtitles. It streamlines the process of playing audio and displaying subtitles without the hassle of creating a complex system.
 
 _Copyright (c) 2016 - 2018 tvledesign LLC. All rights reserved._
