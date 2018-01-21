@@ -29,8 +29,6 @@ public class VOBankEditor : Editor
         GUIStyle styleRowHeader = new GUIStyle();
         styleRowHeader.padding = new RectOffset(0, 0, 3, 3);
         styleRowHeader.normal.background = EditorStyle.SetBackground(1, 1, new Color(0.1f, 0.1f, 0.1f, 0.2f));
-        GUIStyle styleDialogueInputFields = new GUIStyle(GUI.skin.textField);
-        styleDialogueInputFields.margin = new RectOffset(5, 0, 5, 0);
 
         /// EDITOR 
 
@@ -88,7 +86,7 @@ public class VOBankEditor : Editor
                     voBank.bank[i].strName = EditorGUILayout.TextField("Clip Name", voBank.bank[i].strName);
 
                     // show the audio clip field
-                    voBank.bank[i].audClpDialogue = (AudioClip)EditorGUILayout.ObjectField("Dialogue Clip", voBank.bank[i].audClpDialogue, typeof(AudioClip), true);
+                    voBank.bank[i].audClp = (AudioClip)EditorGUILayout.ObjectField("VO Clip", voBank.bank[i].audClp, typeof(AudioClip), true);
 
                     EditorGUILayout.BeginVertical();
                     EditorGUILayout.Space();
@@ -96,7 +94,7 @@ public class VOBankEditor : Editor
 
                     EditorGUILayout.BeginHorizontal(styleRowHeader);
 
-                    EditorGUILayout.LabelField("Dialogue", EditorStyles.boldLabel);
+                    EditorGUILayout.LabelField("Subtitle", EditorStyles.boldLabel);
 
 
                     EditorGUILayout.EndHorizontal();
@@ -104,7 +102,7 @@ public class VOBankEditor : Editor
                     
                     EditorGUILayout.BeginHorizontal();
 
-                    voBank.bank[i].dialogue = EditorGUILayout.TextField(voBank.bank[i].dialogue);
+                    voBank.bank[i].subtitle = EditorGUILayout.TextField(voBank.bank[i].subtitle);
 
                     EditorGUILayout.EndHorizontal();
                     EditorGUILayout.Space();

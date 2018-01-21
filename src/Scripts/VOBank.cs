@@ -11,10 +11,10 @@ using System.Collections.Generic;
 public class ClipProperties
 {
     public int id;                      // keeps track of the clip's current id 
-    public AudioClip audClpDialogue;    // the current dialogue clip
+    public AudioClip audClp;    // the current audio clip
     public string strName;              // the name of the current clip
     public bool blnExpandClipPnl;       // boolean to keep track of custom editor panel
-    public string dialogue;             // the current clip's dialogue
+    public string subtitle;             // the current clip's subtitle
 }
 
 [RequireComponent(typeof(AudioSource))]
@@ -36,7 +36,7 @@ public class VOBank : MonoBehaviour
         ClipProperties clipProp = new ClipProperties();
         clipProp.id = 0;
         clipProp.strName = "Clip Name";
-        clipProp.dialogue = "";
+        clipProp.subtitle = "";
         bank.Add(clipProp);
     }
 
