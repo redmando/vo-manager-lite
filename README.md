@@ -32,35 +32,35 @@ In order to use our VO Manager, we must first make sure that our manager is pres
 
 ![VOManager GameObject](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/ss-1.png)
 
-Now before we can begin using VOManager we must first start adding VO (voice-over) clips to our VOBank and any subtitle dialogue that we may want to come with it. To do so, click on VOManager in the Hierarchy and press the “Add Clip” button under VOBank. You should see a similar interface below once you click on the add clip button.
+Before we can begin using the VO Manager we must first start by adding VO (voice-over) clips into our VO Bank and any subtitles that we may want to go with it. To do so, click on VO Manager in the Hierarchy and press the “Add Clip” button under VO Bank. You should see a similar interface below once you click on the add clip button.
 
+![VOBank Add Clip](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/ss-2.png)
 
+Go ahead and click on the expand icon by “[ID 0] Clip Name” to expand the panel.
 
-![VOBank Add Clip](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/v1.0/ss-2.png)
-
-Go ahead and click on the expand icon by “[ID 0] Clip 0” to expand the panel.
-
-![Clip Properties](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/v1.0/ss-3.png)
+![Clip Properties](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/ss-3.png)
 
 Once expanded you should see a few more options. Here is a list of what they are and do:
 
-* **ID** - An integer value that auto-increments (non-changeable) based on the position the current clip is in. This is used as a reference to call your clip’s properties.
-* **Clip Name** - A string for self-reference. This is mainly use to keep track of all the different clips you may have in the bank for quick reference.
-* **Subtitle Text** - A multi-line text area (string format) that contains the subtitle that you wish to have displayed on the UI when an audio clip is playing (should usually match the dialogue of the clip).
-* **Dialogue Clip** - The audio clip.
-    
-You can also remove a clip by simply pressing the “Remove Clip” button. All ID values will reassign itself if you do so. There is however one last step we need to perform before our setup is complete. In order to use our subtitle system we must first have to go to the Hierarchy and create a new Text object. To do this go to Create -> UI -> Text. By default (if you have no Canvas elements in the scene) it will automatically create a Canvas and EventSystem object for you like so:
+* **ID** - An integer value that can be manually assigned. This is used as a reference to call up your clip’s properties.
+* **Clip Name** - A string that can be manually assigned. Like the ID, this is used as a reference to call up your clip's properties.
+* **VO Clip** - The audio clip.
+* **Subtitle** - The text that appears on screen when you play the audio clip.
 
-![Clip Properties](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/v1.0/ss-4.png)
+Once the VO Bank is set up there is one last step we need to perform before we can use our VO Manager. In order to use our subtitle system, we must first have to go to the Hierarchy and create a new Text object. To do this go to Create -> UI -> Text. By default (if you have no Canvas elements in the scene) it will automatically create a Canvas and EventSystem object for you like so:
 
-Setup the Text component properties and values the way you wish to (by default you can keep the text field of the text component empty). Once you are done click back on the VOManager object and drag and drop the Text component we just created (highlighted in blue above) into the Subtitle Object field in our VOManager. Once you have at least one sound clip added into your VOBank it should look like the following:
+![Clip Properties](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/ss-4.png)
 
-![Clip Properties](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/v1.0/ss-5.png)
+Setup the Text component properties and values the way you'd want it to appear (by default you can keep the text field of the text component empty). Once you are done click back on the VO Manager object and drag and drop the Text component we just created (highlighted in the hierarchy above) into the UI Text Object field in our VO Manager. Once you have at least one sound clip added into your VO Bank it should look like the following:
 
-Once you have finished setting up your VOManager, save your scene and do one of the following:
+![Clip Properties](https://raw.githubusercontent.com/tvledesignLLC/vo-manager/master/documentation/src/img/ss-5.png)
 
-1. If you used the VOManager prefab you can either Apply the current prefab or;
-2. Create a new prefab by dragging your VOManager object into the Project panel (this should be done if you made your VOManager by creating a new GameObject)
+Once the set up for the manager has been completed, save your scene and do one of the following:
+
+1. If you used the VO Manager prefab you can either Apply the current prefab or;
+2. Create a new prefab by dragging your VO Manager object into the Project panel (this should be done if you made your VO Manager by creating a new GameObject) to save a backup prefab.
+
+You can also remove audio clips by clicking on the "-" button beside each audio clip name.
     
 ## Usage
 
