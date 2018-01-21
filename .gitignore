@@ -5,5 +5,8 @@ demo/Assembly-CSharp.csproj
 demo/demo.sln
 demo/obj
 demo/.vs
+demo/tmp
+demo/Assets/AssetStoreTools
+demo/Assets/AssetStoreTools.meta
 builds/Windows/player_win_x86.pdb
 builds/Windows/player_win_x86_s.pdb
