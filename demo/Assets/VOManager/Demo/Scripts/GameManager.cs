@@ -158,14 +158,14 @@ public class GameManager : MonoBehaviour
             // if the E key is pressed
             if (Input.GetKeyDown(KeyCode.E))
             {
-                // disable breadcrumb if it has not been
-                if (goDoorBreadcrumb.activeInHierarchy)
-                    // disable it
-                    goDoorBreadcrumb.SetActive(false);
-
                 // if a converstation has not started
                 if (!blnConvoStart)
                 {
+                    // disable breadcrumb if it has not been
+                    if (goDoorBreadcrumb.activeInHierarchy)
+                        // disable it
+                        goDoorBreadcrumb.SetActive(false);
+
                     // start the convo and set index to 0
                     blnConvoStart = true;
                     blnDoorAudioTriggered = true;
@@ -178,6 +178,11 @@ public class GameManager : MonoBehaviour
                 // if the current mode is force play mode
                 if (blnForcePlay)
                 {
+                    // disable breadcrumb if it has not been
+                    if (goDoorBreadcrumb.activeInHierarchy)
+                        // disable it
+                        goDoorBreadcrumb.SetActive(false);
+
                     // turn off all other triggers and audio
                     TurnOffAllTriggers();
 
@@ -253,14 +258,14 @@ public class GameManager : MonoBehaviour
             // if the E key is pressed
             if (Input.GetKeyDown(KeyCode.E))
             {
-                // disable breadcrumb if it has not been
-                if (goLaptopBreadcrumb.activeInHierarchy)
-                    // disable it
-                    goLaptopBreadcrumb.SetActive(false);
-
                 // if a converstation has not started
                 if (!blnConvoStart)
                 {
+                    // disable breadcrumb if it has not been
+                    if (goLaptopBreadcrumb.activeInHierarchy)
+                        // disable it
+                        goLaptopBreadcrumb.SetActive(false);
+
                     // start the interview and set index to 0
                     blnConvoStart = true;
                     blnLaptopAudioTriggered = true;
@@ -273,6 +278,11 @@ public class GameManager : MonoBehaviour
                 // if the current mode is force play mode
                 if (blnForcePlay)
                 {
+                    // disable breadcrumb if it has not been
+                    if (goLaptopBreadcrumb.activeInHierarchy)
+                        // disable it
+                        goLaptopBreadcrumb.SetActive(false);
+
                     // turn off all other triggers and audio
                     TurnOffAllTriggers();
 
@@ -317,7 +327,7 @@ public class GameManager : MonoBehaviour
                 {
                     // set interview to false
                     blnConvoStart = false;
-                    blnDoorAudioTriggered = false;
+                    blnLaptopAudioTriggered = false;
                 }
             }
         }
@@ -348,14 +358,14 @@ public class GameManager : MonoBehaviour
             // if the E key is pressed
             if (Input.GetKeyDown(KeyCode.E))
             {
-                // disable breadcrumb if it has not been
-                if (goRadioBreadcrumb.activeInHierarchy)
-                    // disable it
-                    goRadioBreadcrumb.SetActive(false);
-
                 // if a converstation has not started
                 if (!blnConvoStart)
                 {
+                    // disable breadcrumb if it has not been
+                    if (goRadioBreadcrumb.activeInHierarchy)
+                        // disable it
+                        goRadioBreadcrumb.SetActive(false);
+
                     // start the radio and set index to 0
                     blnConvoStart = true;
                     blnRadioAudioTriggered = true;
@@ -368,6 +378,11 @@ public class GameManager : MonoBehaviour
                 // if the current mode is force play mode
                 if (blnForcePlay)
                 {
+                    // disable breadcrumb if it has not been
+                    if (goRadioBreadcrumb.activeInHierarchy)
+                        // disable it
+                        goRadioBreadcrumb.SetActive(false);
+
                     // turn off all other triggers and audio
                     TurnOffAllTriggers();
 
