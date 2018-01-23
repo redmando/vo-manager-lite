@@ -26,10 +26,10 @@ If you've chosen to import the package from Unity or from the GitHub, depending 
    * ReadMe.pdf
         
 ## Setup
-In order to use our VO Manager, we must first make sure that our manager is present on the scene at all time. To set up a new manager you can either:
+In order to use our VO Manager, we must first make sure that our VO Bank is present in the scene at all time. To set up a new VO Bank you can either:
 
 1. Create a new empty GameObject in the Hierarchy and drag and drop the VO Bank or VO Manager script onto the newly made gameobject or;
-2. You can go into the prefabs folder in the project panel and simply drag and drop the VO Manager prefab into the Hierarchy.
+2. You can go into the prefabs folder in the project panel and simply drag and drop the VO Bank prefab into the Hierarchy.
 
 ![VOManager GameObject](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-1.png)
 
