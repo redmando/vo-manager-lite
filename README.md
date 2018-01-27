@@ -48,7 +48,7 @@ Once expanded you should see a few more options. Here is a list of what they are
 * **VO Clip** - The audio clip.
 * **Subtitle** - The text that appears on screen when you play the audio clip.
 
-Once the VO Bank is set up there is one last step we need to perform before we can use our VO Manager. In order to use our subtitle system, we must first have to go to the Hierarchy and create a new Text object. To do this go to Create -> UI -> Text. By default (if you have no Canvas elements in the scene) it will automatically create a Canvas and EventSystem object for you like so:
+Once the VO Bank is set up there is one last step we need to perform before we can use our VO Manager. In order to use our subtitle system, we must first go to the Hierarchy and create a new Text object. To do this go to Create -> UI -> Text. By default (if you have no Canvas elements in the scene) it will automatically create a Canvas and EventSystem object for you like so:
 
 ![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-4.png)
 
