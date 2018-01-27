@@ -52,7 +52,7 @@ Once the VO Bank is set up there is one last step we need to perform before we c
 
 ![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-4.png)
 
-Setup the Text component properties and values the way you'd want it to appear (by default you can keep the text field of the text component empty). Once you are done click back on the VO Manager object and drag and drop the Text component we just created (highlighted in the hierarchy above) into the UI Text Object field in our VO Manager. Once you have at least one sound clip added into your VO Bank it should look like the following:
+Setup the Text component properties and values the way you'd want it to appear (by default you can keep the text field of the text component empty). Once you are done click back on the VO Bank object and drag and drop the Text component we just created (highlighted in the hierarchy above) into the UI Text Object field in our VO Manager. Once you have at least one sound clip added into your VO Bank it should look like the following:
 
 ![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-5.png)
 
