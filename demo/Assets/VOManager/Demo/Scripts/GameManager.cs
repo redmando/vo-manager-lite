@@ -14,52 +14,58 @@ public class GameManager : MonoBehaviour
 
     // public variables
     [Header("Settings")]
-    public bool blnForcePlay;   // check if the current mode is force play mode
-    public bool blnConvoStart;  // check if a conversation is happening
-    public bool blnInstructionsTriggered;   // check if the on screen instructions are triggered
-    public bool blnSelfAudioTriggered;  // check if first person audio is triggered
     public Text txtAudioMode;    // display the current audio mode
-    public Text txtSecondary;   // secondary text incase main vo is taken up
-    
+    public bool blnForcePlay;   // check if the current mode is force play mode
+    public bool blnAudioHasStarted; // check if the audio has started playing
+
+    [Header("Hint")]
+    public Text txtHint;    // text object that informs the player what to do
+    public float fltHintFadeSpeed;  // fade speed for hint text object
+
     [Header("Door")]
-    public AudioSource audSrcDoor;   // the audio source for the door conversation
-    public bool blnTriggerDoor; // check if the door audio is triggerable
-    public bool blnDoorAudioTriggered;  // check if the door conversation has been triggered
-    public float fltDelayBetweenAudioDoor = 1.0f;   // the delay between audio files
-    public int[] col_intHangingPictureConvo;  // an array to store the order for the hanging picture conversation
+    public AudioSource audSrcDoor;   // the audio source for the door
     public GameObject goDoorBreadcrumb; // breadcrumb for door
+    public float fltDelayBetweenDoorAudio = 0.8f;  // the delay between audio files
+    public bool blnCanTriggerDoorAudio; // checks if the door audio can be triggered
+    public bool blnDoorAudioIsTriggered;    // check if the door audio is triggered
+    
+    // an array to store the order of which our audio performs
+    private int[] m_col_intDoorAudio = new int[] { 13, 0, 14, 1, 15, 2, 16, 3, 17, 4, 18, 5, 19, 6, 20, 7, 21, 8, 22 };  
 
     [Header("Laptop")]
-    public AudioSource audSrcLaptop;   // the audio source for the laptop interview
-    public bool blnTriggerLaptop; // check if the laptop interview is triggerable
-    public bool blnLaptopAudioTriggered;    // check if the laptop audio is triggered
-    public float fltDelayBetweenAudioLaptop = 1.0f;   // the delay between audio files
-    public int[] col_intLaptopInterview;  // an array to store the order for the laptop interview.
+    public AudioSource audSrcLaptop;   // the audio source for the laptop
     public GameObject goLaptopBreadcrumb; // breadcrumb for laptop
+    public float fltDelayBetweenLaptopAudio = 0.6f;  // the delay between audio files
+    public bool blnCanTriggerLaptopAudio; // checks if the laptop audio can be triggered
+    public bool blnLaptopAudioIsTriggered;    // check if the laptop audio is triggered
+
+    // an array to store the order of which our audio performs
+    private int[] m_col_intLaptopAudio = new int[] { 23, 31, 24, 32, 25, 33, 26, 34, 27, 35, 28, 36, 29, 37, 30 };
 
     [Header("Radio")]
     public AudioSource audSrcRadio;   // the audio source for the radio
-    public bool blnTriggerRadio; // check if the radio is triggerable
-    public bool blnRadioAudioTriggered;    // check if the radio audio is triggered
-    public float fltDelayBetweenAudioRadio = 1.0f;   // the delay between audio files
-    public int[] col_intRadio;  // an array to store the order for the radio
     public GameObject goRadioBreadcrumb; // breadcrumb for radio
+    public float fltDelayBetweenRadioAudio = 1.0f;  // the delay between audio files
+    public bool blnCanTriggerRadioAudio; // checks if the radio audio can be triggered
+    public bool blnRadioAudioIsTriggered;    // check if the radio audio is triggered
 
-    [Header("Bookshelf")]
-    public bool blnTriggerBookshelf; // check if the bookshelf is triggerable
-    public string[] col_strBookshelf;  // an array to store our different bookshelf audio clips
-    public GameObject goBookshelfBreadcrumb; // breadcrumb for bookshelf
+    // an array to store the order of which our audio performs
+    private int[] m_col_intRadioAudio = new int[] { 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52 };
 
-    [Header("Bed")]
-    public bool blnTriggerBed; // check if the bed is triggerable
-    public string[] col_strBed;  // an array to store our different bed audio clips
+    [Header("Bed and Bookshelf")]
     public GameObject goBedBreadcrumb; // breadcrumb for bed
+    public GameObject goBookshelfBreadcrumb; // breadcrumb for bookshelf
+    public bool blnCanTriggerBedAudio;  // checks if the bed audio can be triggered
+    public bool blnCanTriggerBookshelfAudio; // checks if the bookshelf audio can be triggered
+    public bool blnSelfAudioIsTriggered;    // check if the bed or bookshelf audio is triggered
+
+    // an array to store our different audio clips
+    private string[] m_col_strBed = new string[] { "Bed 1", "Bed 2", "Bed 3" };
+    private string[] m_col_strBookshelf = new string[] { "Bookshelf 1", "Bookshelf 2", "Bookshelf 3" };
 
     // private variables
     private int m_intCurrentIndex;  // keep track of the current audio's index
     private float m_fltDelayBetweenAudio;   // the delay between audio files
-    private int m_intBedIndex;  // keep track of which audio is playing
-    private int m_intBookshelfIndex;  // keep track of which audio is playing
 
     // when the instance is loaded
     private void Awake()
@@ -74,509 +80,43 @@ public class GameManager : MonoBehaviour
         // vo options
         VOOptions();
 
-        // door conversation
-        DoorConversation();
-
-        // laptop interview
-        LaptopInterview();
-
-        // radio broadcast
-        RadioBroadcast();
-
-        // bed and bookshelf
-        BedAndBookshelf();
-
-        // if there are no triggers
-        if (!blnConvoStart && !blnInstructionsTriggered)
-        {
-            // set the text to an empty string
-            VOManager.Instance.uiTextObject.text = "";
-        }
-
+        // audio triggers
+        DoorAudio();
+        LaptopAudio();
+        RadioAudio();
+        BedAndBookshelfAudio();
+  
         // if play mode is on
-        if(!blnForcePlay)
-        {
+        if (!blnForcePlay)
+            // inform the user is play mode
             txtAudioMode.text = "Play Mode";
-        } else
-        {
+        else
+            // inform the user its force play mode
             txtAudioMode.text = "Force Play Mode";
 
-            // if there is no trigger
-            if(!blnInstructionsTriggered)
-            {
-                // set the text to an empty string
-                txtSecondary.text = "";
-            }
-        }
-
-        // if there is no conversation happening and secondary text is not empty
-        if(!blnConvoStart && txtSecondary.text != "")
-        {
+        // if audio is not triggerable and hint text object is not empty 
+        // and mode is not force play and audio has started
+        if ((blnAudioHasStarted && txtHint.text != "" && !blnForcePlay) || (!blnCanTriggerDoorAudio && !blnCanTriggerLaptopAudio && !blnCanTriggerRadioAudio && !blnCanTriggerBedAudio && !blnCanTriggerBookshelfAudio && blnForcePlay))
             // empty the field
-            txtSecondary.text = "";
-        }
+            txtHint.text = "";
 
         // if the r key is pressed
         if (Input.GetKeyDown(KeyCode.R))
         {
+            // reset the scene
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
     }
 
-    // turn off all other triggers and audio
+    // turn off all all audio triggers
     private void TurnOffAllTriggers()
     {
-        blnConvoStart = false;
-        blnDoorAudioTriggered = false;
-        blnLaptopAudioTriggered = false;
-        blnRadioAudioTriggered = false;
-        blnSelfAudioTriggered = false;
-    }
-
-    // door conversation
-    private void DoorConversation()
-    {
-        // if the door trigger is on
-        if (blnTriggerDoor)
-        {
-            // if a converstation has not started
-            if (!blnConvoStart)
-            {
-                // set the text to inform the user they can trigger the conversation
-                VOManager.Instance.uiTextObject.text = "Press [E] to listen to the conversation in the hallway.";
-            } else
-            {
-                // is force play mode is on
-                if (blnForcePlay)
-                {
-                    // set the text to inform the user they can trigger the conversation
-                    txtSecondary.text = "Press [E] to listen to the conversation in the hallway.";
-                }
-            }
-
-            // if the E key is pressed
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // if a converstation has not started
-                if (!blnConvoStart)
-                {
-                    // disable breadcrumb if it has not been
-                    if (goDoorBreadcrumb.activeInHierarchy)
-                        // disable it
-                        goDoorBreadcrumb.SetActive(false);
-
-                    // start the convo and set index to 0
-                    blnConvoStart = true;
-                    blnDoorAudioTriggered = true;
-                    m_intCurrentIndex = 0;
-
-                    // set the delay between audio
-                    m_fltDelayBetweenAudio = 0;
-                }
-
-                // if the current mode is force play mode
-                if (blnForcePlay)
-                {
-                    // disable breadcrumb if it has not been
-                    if (goDoorBreadcrumb.activeInHierarchy)
-                        // disable it
-                        goDoorBreadcrumb.SetActive(false);
-
-                    // turn off all other triggers and audio
-                    TurnOffAllTriggers();
-
-                    // force play the first audio clip and set the index to 1
-                    blnConvoStart = true;
-                    blnDoorAudioTriggered = true;
-                    VOManager.Instance.ForcePlay(audSrcDoor, col_intHangingPictureConvo[0]);
-                    m_intCurrentIndex = 1;
-
-                    // set the delay between audio
-                    m_fltDelayBetweenAudio = fltDelayBetweenAudioDoor;
-                }
-            }
-        }
-
-        // if the door audio is triggered
-        if (blnDoorAudioTriggered)
-        {
-            // if the audio source isn't playing
-            if (!VOManager.Instance.IsPlaying())
-            {
-                // if the current index is less than the list length
-                if (m_intCurrentIndex < col_intHangingPictureConvo.Length)
-                {
-                    // if the delay between audio files is 0
-                    if (m_fltDelayBetweenAudio <= 0)
-                    {
-                        // play the audio at the audio source and increment the index
-                        VOManager.Instance.Play(audSrcDoor, col_intHangingPictureConvo[m_intCurrentIndex]);
-                        m_intCurrentIndex++;
-
-                        // set the default delay
-                        m_fltDelayBetweenAudio = fltDelayBetweenAudioDoor;
-                    }
-                    else
-                    {
-                        // decrease the delay based on time
-                        m_fltDelayBetweenAudio -= Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    // set convo to false
-                    blnConvoStart = false;
-                    blnDoorAudioTriggered = false;
-                }
-            }
-        }
-    }
-
-    // laptop interview
-    private void LaptopInterview()
-    {
-        // if the laptop trigger is on
-        if (blnTriggerLaptop)
-        {
-            // if a converstation has not started
-            if (!blnConvoStart)
-            {
-                // set the text to inform the user they can trigger the interview
-                VOManager.Instance.uiTextObject.text = "Press [E] to play the interview.";
-            }
-            else
-            {
-                // is force play mode is on
-                if (blnForcePlay)
-                {
-                    // set the text to inform the user they can trigger the interview
-                    txtSecondary.text = "Press [E] to play the interview.";
-                }
-            }
-
-            // if the E key is pressed
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // if a converstation has not started
-                if (!blnConvoStart)
-                {
-                    // disable breadcrumb if it has not been
-                    if (goLaptopBreadcrumb.activeInHierarchy)
-                        // disable it
-                        goLaptopBreadcrumb.SetActive(false);
-
-                    // start the interview and set index to 0
-                    blnConvoStart = true;
-                    blnLaptopAudioTriggered = true;
-                    m_intCurrentIndex = 0;
-
-                    // set the delay between audio
-                    m_fltDelayBetweenAudio = 0;
-                }
-
-                // if the current mode is force play mode
-                if (blnForcePlay)
-                {
-                    // disable breadcrumb if it has not been
-                    if (goLaptopBreadcrumb.activeInHierarchy)
-                        // disable it
-                        goLaptopBreadcrumb.SetActive(false);
-
-                    // turn off all other triggers and audio
-                    TurnOffAllTriggers();
-
-                    // force play the first audio clip and set the index to 1
-                    blnConvoStart = true;
-                    blnLaptopAudioTriggered = true;
-                    VOManager.Instance.ForcePlay(audSrcLaptop, col_intLaptopInterview[0]);
-                    m_intCurrentIndex = 1;
-
-                    // set the delay between audio
-                    m_fltDelayBetweenAudio = fltDelayBetweenAudioLaptop;
-                }
-            }
-        }
-
-        // if the laptop audio is triggered
-        if (blnLaptopAudioTriggered)
-        {
-            // if the audio source isn't playing
-            if (!VOManager.Instance.IsPlaying())
-            {
-                // if the current index is less than the list length
-                if (m_intCurrentIndex < col_intLaptopInterview.Length)
-                {
-                    // if the delay between audio files is 0
-                    if (m_fltDelayBetweenAudio <= 0)
-                    {
-                        // play the audio at the audio source and increment the index
-                        VOManager.Instance.Play(audSrcLaptop, col_intLaptopInterview[m_intCurrentIndex]);
-                        m_intCurrentIndex++;
-
-                        // set the default delay
-                        m_fltDelayBetweenAudio = fltDelayBetweenAudioLaptop;
-                    }
-                    else
-                    {
-                        // decrease the delay based on time
-                        m_fltDelayBetweenAudio -= Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    // set interview to false
-                    blnConvoStart = false;
-                    blnLaptopAudioTriggered = false;
-                }
-            }
-        }
-    }
-
-    // radio broadcast
-    private void RadioBroadcast()
-    {
-        // if the radio trigger is on
-        if (blnTriggerRadio)
-        {
-            // if a converstation has not started
-            if (!blnConvoStart)
-            {
-                // set the text to inform the user they can trigger the radio
-                VOManager.Instance.uiTextObject.text = "Press [E] to turn on the radio.";
-            }
-            else
-            {
-                // is force play mode is on
-                if (blnForcePlay)
-                {
-                    // set the text to inform the user they can trigger the radio
-                    txtSecondary.text = "Press [E] to turn on the radio.";
-                }
-            }
-
-            // if the E key is pressed
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // if a converstation has not started
-                if (!blnConvoStart)
-                {
-                    // disable breadcrumb if it has not been
-                    if (goRadioBreadcrumb.activeInHierarchy)
-                        // disable it
-                        goRadioBreadcrumb.SetActive(false);
-
-                    // start the radio and set index to 0
-                    blnConvoStart = true;
-                    blnRadioAudioTriggered = true;
-                    m_intCurrentIndex = 0;
-
-                    // set the delay between audio
-                    m_fltDelayBetweenAudio = 0;
-                }
-
-                // if the current mode is force play mode
-                if (blnForcePlay)
-                {
-                    // disable breadcrumb if it has not been
-                    if (goRadioBreadcrumb.activeInHierarchy)
-                        // disable it
-                        goRadioBreadcrumb.SetActive(false);
-
-                    // turn off all other triggers and audio
-                    TurnOffAllTriggers();
-
-                    // force play the first audio clip and set the index to 1
-                    blnConvoStart = true;
-                    blnRadioAudioTriggered = true;
-                    VOManager.Instance.ForcePlay(audSrcRadio, col_intRadio[0]);
-                    m_intCurrentIndex = 1;
-
-                    // set the delay between audio
-                    m_fltDelayBetweenAudio = fltDelayBetweenAudioRadio;
-                }
-            }
-        }
-
-        // if the radio audio is triggered
-        if (blnRadioAudioTriggered)
-        {
-            // if the audio source isn't playing
-            if (!VOManager.Instance.IsPlaying())
-            {
-                // if the current index is less than the list length
-                if (m_intCurrentIndex < col_intRadio.Length)
-                {
-                    // if the delay between audio files is 0
-                    if (m_fltDelayBetweenAudio <= 0)
-                    {
-                        // play the audio at the audio source and increment the index
-                        VOManager.Instance.Play(audSrcRadio, col_intRadio[m_intCurrentIndex]);
-                        m_intCurrentIndex++;
-
-                        // set the default delay
-                        m_fltDelayBetweenAudio = fltDelayBetweenAudioRadio;
-                    }
-                    else
-                    {
-                        // decrease the delay based on time
-                        m_fltDelayBetweenAudio -= Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    // set radio to false
-                    blnConvoStart = false;
-                    blnRadioAudioTriggered = false;
-                }
-            }
-        }
-    }
-
-    // bed and bookshelf
-    private void BedAndBookshelf()
-    {
-        // if the bookshelf or bed trigger is on
-        if (blnTriggerBookshelf || blnTriggerBed)
-        {
-            // if a converstation has not started
-            if (!blnConvoStart)
-            {
-                // set the text to inform the user they can trigger the action
-                VOManager.Instance.uiTextObject.text = "Press [E] to examine.";
-            }
-            else
-            {
-                // is force play mode is on
-                if (blnForcePlay)
-                {
-                    // set the text to inform the user they can trigger the action
-                    txtSecondary.text = "Press [E] to examine.";
-                }
-            }
-
-            // if the E key is pressed
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                // if a converstation has not started
-                if (!blnConvoStart)
-                {
-                    // start the convo and set index to 0
-                    blnConvoStart = true;
-                    blnSelfAudioTriggered = true;
-
-                    // if the trigger is the bed
-                    if(blnTriggerBed)
-                    {
-                        // disable breadcrumb if it has not been
-                        if (goBedBreadcrumb.activeInHierarchy)
-                            // disable it
-                            goBedBreadcrumb.SetActive(false);
-
-                        // play a random clip from the list
-                        VOManager.Instance.Play(col_strBed[m_intBedIndex]);
-
-                        // increase bed index
-                        if (m_intBedIndex == 2)
-                        {
-                            m_intBedIndex = 0;
-                        } else
-                        {
-                            m_intBedIndex++;
-                        }
-                    }
-
-                    // else if the trigger is the bookshelf
-                    else if (blnTriggerBookshelf)
-                    {
-                        // disable breadcrumb if it has not been
-                        if (goBookshelfBreadcrumb.activeInHierarchy)
-                            // disable it
-                            goBookshelfBreadcrumb.SetActive(false);
-
-                        // play a random clip from the list
-                        VOManager.Instance.Play(col_strBookshelf[m_intBookshelfIndex]);
-
-                        // increase bookshelf index
-                        if (m_intBookshelfIndex == 2)
-                        {
-                            m_intBookshelfIndex = 0;
-                        }
-                        else
-                        {
-                            m_intBookshelfIndex++;
-                        }
-                    }
-                }
-
-                // if the current mode is force play mode
-                if (blnForcePlay)
-                {
-                    // turn off all other triggers and audio
-                    TurnOffAllTriggers();
-
-                    // force play the first audio clip and set the index to 1
-                    blnConvoStart = true;
-                    blnSelfAudioTriggered = true;
-
-                    // if the trigger is the bed
-                    if (blnTriggerBed)
-                    {
-                        // disable breadcrumb if it has not been
-                        if (goBedBreadcrumb.activeInHierarchy)
-                            // disable it
-                            goBedBreadcrumb.SetActive(false);
-
-                        // play a random clip from the list
-                        VOManager.Instance.ForcePlay(col_strBed[m_intBedIndex]);
-        
-                        // increase bed index
-                        if (m_intBedIndex == 2)
-                        {
-                            m_intBedIndex = 0;
-                        }
-                        else
-                        {
-                            m_intBedIndex++;
-                        }
-                    }
-
-                    // else if the trigger is the bookshelf
-                    else if (blnTriggerBookshelf)
-                    {
-                        // disable breadcrumb if it has not been
-                        if (goBookshelfBreadcrumb.activeInHierarchy)
-                            // disable it
-                            goBookshelfBreadcrumb.SetActive(false);
-
-                        // play a random clip from the list
-                        VOManager.Instance.ForcePlay(col_strBookshelf[m_intBookshelfIndex]);
-                 
-                        // increase bookshelf index
-                        if (m_intBookshelfIndex == 2)
-                        {
-                            m_intBookshelfIndex = 0;
-                        }
-                        else
-                        {
-                            m_intBookshelfIndex++;
-                        }
-                    }
-                }
-            }
-        }
-
-        // if self conversation is triggered
-        if(blnSelfAudioTriggered)
-        {
-            // check if the audio is still playing
-            if(!VOManager.Instance.IsPlaying())
-            {
-                // turn off the trigger and convo
-                blnConvoStart = false;
-                blnSelfAudioTriggered = false;
-            }
-        }
+        blnAudioHasStarted = false;
+        blnDoorAudioIsTriggered = false;
+        blnLaptopAudioIsTriggered = false;
+        blnRadioAudioIsTriggered = false;
+        blnSelfAudioIsTriggered = false; 
     }
 
     // vo options
@@ -598,11 +138,386 @@ public class GameManager : MonoBehaviour
             // stop audio players
             VOManager.Instance.Stop();
 
-            // turn of all triggers
-            blnConvoStart = false;
-            blnDoorAudioTriggered = false;
-            blnLaptopAudioTriggered = false;
-            blnRadioAudioTriggered = false;
+            // turn of all audio triggers
+            TurnOffAllTriggers();
+        }
+    }
+
+    // holds all the functionality related to the door audio
+    private void DoorAudio()
+    {
+        // if the door audio can be triggered
+        if (blnCanTriggerDoorAudio)
+        {
+            // if the audio has not started playing or if it is force play mode
+            if (!blnAudioHasStarted || blnForcePlay)
+            {
+                // set the text for the hint text object
+                txtHint.text = "[E] Eavesdrop conversation in hallway.";
+            }
+
+            // if the E key is pressed
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // if an audio has not started playing
+                if (!blnAudioHasStarted)
+                {
+                    // disable the breadcrumb if it has not been
+                    if (goDoorBreadcrumb.activeInHierarchy)
+                        // disable the gameobject
+                        goDoorBreadcrumb.SetActive(false);
+
+                    // start the audio and set the index to 0
+                    blnAudioHasStarted = true;
+                    blnDoorAudioIsTriggered = true;
+                    m_intCurrentIndex = 0;
+
+                    // set the delay rate between the audio
+                    m_fltDelayBetweenAudio = 0;
+                }
+
+                // if the current mode is force play mode
+                if (blnForcePlay)
+                {
+                    // disable breadcrumb if it has not been
+                    if (goDoorBreadcrumb.activeInHierarchy)
+                        // disable the gameobject
+                        goDoorBreadcrumb.SetActive(false);
+
+                    // turn off all other audio triggers
+                    TurnOffAllTriggers();
+
+                    // force play the first audio clip and set the index to 1
+                    blnAudioHasStarted = true;
+                    blnDoorAudioIsTriggered = true;
+                    VOManager.Instance.ForcePlay(audSrcDoor, m_col_intDoorAudio[0]);
+                    m_intCurrentIndex = 1;
+
+                    // set the delay between audio
+                    m_fltDelayBetweenAudio = fltDelayBetweenDoorAudio;
+                }
+            }
+        } 
+
+        // if the door audio is triggered
+        if (blnDoorAudioIsTriggered)
+            // if the audio source isn't playing
+            if (!VOManager.Instance.IsPlaying())
+            {
+                // if the current index is less than the list length
+                if (m_intCurrentIndex < m_col_intDoorAudio.Length)
+                {
+                    // if the delay rate between the audio files is 0
+                    if (m_fltDelayBetweenAudio <= 0)
+                    {
+                        // play the audio at the audio source and increment the index
+                        VOManager.Instance.Play(audSrcDoor, m_col_intDoorAudio[m_intCurrentIndex]);
+                        m_intCurrentIndex++;
+
+                        // reset the delay rate
+                        m_fltDelayBetweenAudio = fltDelayBetweenDoorAudio;
+                    }
+                    else
+                        // decrease the delay rate based on delta time
+                        m_fltDelayBetweenAudio -= Time.deltaTime;
+                }
+                else
+                {
+                    // turn off the audio triggers
+                    TurnOffAllTriggers();
+                    m_intCurrentIndex = 0;
+                }
+            }
+    }
+
+    // holds all the functionality related to the laptop audio
+    private void LaptopAudio()
+    {
+        // if the laptop audio can be triggered
+        if (blnCanTriggerLaptopAudio)
+        {
+            // if the audio has not started playing or if it is force play mode
+            if (!blnAudioHasStarted || blnForcePlay)
+            {
+                // set the text for the hint text object
+                txtHint.text = "[E] Listen to the online interview.";
+            }
+
+            // if the E key is pressed
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // if an audio has not started playing
+                if (!blnAudioHasStarted)
+                {
+                    // disable the breadcrumb if it has not been
+                    if (goLaptopBreadcrumb.activeInHierarchy)
+                        // disable the gameobject
+                        goLaptopBreadcrumb.SetActive(false);
+
+                    // start the audio and set the index to 0
+                    blnAudioHasStarted = true;
+                    blnLaptopAudioIsTriggered = true;
+                    m_intCurrentIndex = 0;
+
+                    // set the delay rate between the audio
+                    m_fltDelayBetweenAudio = 0;
+                }
+
+                // if the current mode is force play mode
+                if (blnForcePlay)
+                {
+                    // disable breadcrumb if it has not been
+                    if (goLaptopBreadcrumb.activeInHierarchy)
+                        // disable the gameobject
+                        goLaptopBreadcrumb.SetActive(false);
+
+                    // turn off all other audio triggers
+                    TurnOffAllTriggers();
+
+                    // force play the first audio clip and set the index to 1
+                    blnAudioHasStarted = true;
+                    blnLaptopAudioIsTriggered = true;
+                    VOManager.Instance.ForcePlay(audSrcLaptop, m_col_intLaptopAudio[0]);
+                    m_intCurrentIndex = 1;
+
+                    // set the delay between audio
+                    m_fltDelayBetweenAudio = fltDelayBetweenLaptopAudio;
+                }
+            }
+        }
+
+        // if the laptop audio is triggered
+        if (blnLaptopAudioIsTriggered)
+            // if the audio source isn't playing
+            if (!VOManager.Instance.IsPlaying())
+            {
+                // if the current index is less than the list length
+                if (m_intCurrentIndex < m_col_intLaptopAudio.Length)
+                {
+                    // if the delay rate between the audio files is 0
+                    if (m_fltDelayBetweenAudio <= 0)
+                    {
+                        // play the audio at the audio source and increment the index
+                        VOManager.Instance.Play(audSrcLaptop, m_col_intLaptopAudio[m_intCurrentIndex]);
+                        m_intCurrentIndex++;
+
+                        // reset the delay rate
+                        m_fltDelayBetweenAudio = fltDelayBetweenLaptopAudio;
+                    }
+                    else
+                        // decrease the delay rate based on delta time
+                        m_fltDelayBetweenAudio -= Time.deltaTime;
+                }
+                else
+                {
+                    // turn off the audio triggers
+                    TurnOffAllTriggers();
+                    m_intCurrentIndex = 0;
+                }
+            }
+    }
+
+    // holds all the functionality related to the radio audio
+    private void RadioAudio()
+    {
+        // if the radio audio can be triggered
+        if (blnCanTriggerRadioAudio)
+        {
+            // if the audio has not started playing or if it is force play mode
+            if (!blnAudioHasStarted || blnForcePlay)
+            {
+                // set the text for the hint text object
+                txtHint.text = "[E] Listen to the online interview.";
+            }
+
+            // if the E key is pressed
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // if an audio has not started playing
+                if (!blnAudioHasStarted)
+                {
+                    // disable the breadcrumb if it has not been
+                    if (goRadioBreadcrumb.activeInHierarchy)
+                        // disable the gameobject
+                        goRadioBreadcrumb.SetActive(false);
+
+                    // start the audio and set the index to 0
+                    blnAudioHasStarted = true;
+                    blnRadioAudioIsTriggered = true;
+                    m_intCurrentIndex = 0;
+
+                    // set the delay rate between the audio
+                    m_fltDelayBetweenAudio = 0;
+                }
+
+                // if the current mode is force play mode
+                if (blnForcePlay)
+                {
+                    // disable breadcrumb if it has not been
+                    if (goRadioBreadcrumb.activeInHierarchy)
+                        // disable the gameobject
+                        goRadioBreadcrumb.SetActive(false);
+
+                    // turn off all other audio triggers
+                    TurnOffAllTriggers();
+
+                    // force play the first audio clip and set the index to 1
+                    blnAudioHasStarted = true;
+                    blnRadioAudioIsTriggered = true;
+                    VOManager.Instance.ForcePlay(audSrcRadio, m_col_intRadioAudio[0]);
+                    m_intCurrentIndex = 1;
+
+                    // set the delay between audio
+                    m_fltDelayBetweenAudio = fltDelayBetweenRadioAudio;
+                }
+            }
+        }
+
+        // if the radio audio is triggered
+        if (blnRadioAudioIsTriggered)
+            // if the audio source isn't playing
+            if (!VOManager.Instance.IsPlaying())
+            {
+                // if the current index is less than the list length
+                if (m_intCurrentIndex < m_col_intRadioAudio.Length)
+                {
+                    // if the delay rate between the audio files is 0
+                    if (m_fltDelayBetweenAudio <= 0)
+                    {
+                        // play the audio at the audio source and increment the index
+                        VOManager.Instance.Play(audSrcRadio, m_col_intRadioAudio[m_intCurrentIndex]);
+                        m_intCurrentIndex++;
+
+                        // reset the delay rate
+                        m_fltDelayBetweenAudio = fltDelayBetweenRadioAudio;
+                    }
+                    else
+                        // decrease the delay rate based on delta time
+                        m_fltDelayBetweenAudio -= Time.deltaTime;
+                }
+                else
+                {
+                    // turn off the audio triggers
+                    TurnOffAllTriggers();
+                    m_intCurrentIndex = 0;
+                }
+            }
+    }
+
+    // holds all the functionality related to the bed and bookshelf audio
+    private void BedAndBookshelfAudio()
+    {
+        // if the bed or bookshelf audio can be triggered
+        if (blnCanTriggerBedAudio || blnCanTriggerBookshelfAudio)
+        {
+            // if the audio has not started playing or if it is force play mode
+            if (!blnAudioHasStarted || blnForcePlay)
+                // set the text for the hint text object
+                txtHint.text = "[E] Examine.";
+
+            // if the E key is pressed
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // if an audio has not started playing
+                if (!blnAudioHasStarted)
+                {
+                    // start the audio
+                    blnAudioHasStarted = true;
+                    blnSelfAudioIsTriggered = true;
+
+                    // if the audio is for the bed
+                    if (blnCanTriggerBedAudio)
+                    {
+                        // disable breadcrumb if it has not been
+                        if (goBedBreadcrumb.activeInHierarchy)
+                            // disable the gameobject
+                            goBedBreadcrumb.SetActive(false);
+
+                        // play the audio clip
+                        VOManager.Instance.Play(m_col_strBed[m_intCurrentIndex]);
+
+                        // increase the index
+                        if (m_intCurrentIndex == 2)
+                            m_intCurrentIndex = 0;
+                        else
+                            m_intCurrentIndex++;
+                    }
+
+                    // if the audio is for the bookshelf
+                    else if (blnCanTriggerBookshelfAudio)
+                    {
+                        // disable breadcrumb if it has not been
+                        if (goBookshelfBreadcrumb.activeInHierarchy)
+                            // disable the gameobject
+                            goBookshelfBreadcrumb.SetActive(false);
+
+                        // play the audio clip
+                        VOManager.Instance.Play(m_col_strBookshelf[m_intCurrentIndex]);
+
+                        // increase the index
+                        if (m_intCurrentIndex == 2)
+                            m_intCurrentIndex = 0;
+                        else
+                            m_intCurrentIndex++;
+                    }
+                }
+
+                // if the current mode is force play mode
+                if (blnForcePlay)
+                {
+                    // turn off all audio triggers
+                    TurnOffAllTriggers();
+
+                    // start the audio
+                    blnAudioHasStarted = true;
+                    blnSelfAudioIsTriggered = true;
+
+                    // if the audio is for the bed
+                    if (blnCanTriggerBedAudio)
+                    {
+                        // disable breadcrumb if it has not been
+                        if (goBedBreadcrumb.activeInHierarchy)
+                            // disable the gameobject
+                            goBedBreadcrumb.SetActive(false);
+
+                        // play the audio clip
+                        VOManager.Instance.ForcePlay(m_col_strBed[m_intCurrentIndex]);
+
+                        // increase the index
+                        if (m_intCurrentIndex == 2)
+                            m_intCurrentIndex = 0;
+                        else
+                            m_intCurrentIndex++;
+                    }
+
+                    // if the audio is for the bookshelf
+                    else if (blnCanTriggerBookshelfAudio)
+                    {
+                        // disable breadcrumb if it has not been
+                        if (goBookshelfBreadcrumb.activeInHierarchy)
+                            // disable the gameobject
+                            goBookshelfBreadcrumb.SetActive(false);
+
+                        // play the audio clip
+                        VOManager.Instance.ForcePlay(m_col_strBookshelf[m_intCurrentIndex]);
+
+                        // increase the index
+                        if (m_intCurrentIndex == 2)
+                            m_intCurrentIndex = 0;
+                        else
+                            m_intCurrentIndex++;
+                    }
+                }
+            }
+        }
+
+        // if the self audio is triggered
+        if (blnSelfAudioIsTriggered)
+        {
+            // check if the audio is still playing
+            if (!VOManager.Instance.IsPlaying())
+                // turn off the audio triggers
+                TurnOffAllTriggers();
         }
     }
 }

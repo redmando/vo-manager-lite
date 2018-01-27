@@ -90,76 +90,51 @@ public class PlayerControls : MonoBehaviour
         {
             // if the object is tagged door
             if(hit.transform.gameObject.tag == "Door")
-            {
-                // set the game manager door trigger to true
-                GameManager.Instance.blnTriggerDoor = true;
-                GameManager.Instance.blnInstructionsTriggered = true;
-            } else if (hit.transform.gameObject.tag != "Door")
-            {
+                // set the game manager door audio trigger to true
+                GameManager.Instance.blnCanTriggerDoorAudio = true;
+            else if (hit.transform.gameObject.tag != "Door")
                 // else set it to false
-                GameManager.Instance.blnTriggerDoor = false;
-            }
+                GameManager.Instance.blnCanTriggerDoorAudio = false;
 
             // if the object is tagged laptop
             if (hit.transform.gameObject.tag == "Laptop")
-            {
-                // set the game manager laptop trigger to true
-                GameManager.Instance.blnTriggerLaptop = true;
-                GameManager.Instance.blnInstructionsTriggered = true;
-            }
+                // set the game manager laptop audio trigger to true
+                GameManager.Instance.blnCanTriggerLaptopAudio = true;
             else if (hit.transform.gameObject.tag != "Laptop")
-            {
-                // else set it to false
-                GameManager.Instance.blnTriggerLaptop = false;
-            }
+            // else set it to false
+                GameManager.Instance.blnCanTriggerLaptopAudio = false;
 
             // if the object is tagged radio
             if (hit.transform.gameObject.tag == "Radio")
-            {
-                // set the game manager radio trigger to true
-                GameManager.Instance.blnTriggerRadio = true;
-                GameManager.Instance.blnInstructionsTriggered = true;
-            }
+                // set the game manager radio audio trigger to true
+                GameManager.Instance.blnCanTriggerRadioAudio = true;
             else if (hit.transform.gameObject.tag != "Radio")
-            {
                 // else set it to false
-                GameManager.Instance.blnTriggerRadio = false;
-            }
+                GameManager.Instance.blnCanTriggerRadioAudio = false;
 
             // if the object is tagged bed
             if (hit.transform.gameObject.tag == "Bed")
-            {
-                // set the game manager bed trigger to true
-                GameManager.Instance.blnTriggerBed = true;
-                GameManager.Instance.blnInstructionsTriggered = true;
-            }
+                // set the game manager radio audio trigger to true
+                GameManager.Instance.blnCanTriggerBedAudio = true;
             else if (hit.transform.gameObject.tag != "Bed")
-            {
                 // else set it to false
-                GameManager.Instance.blnTriggerBed = false;
-            }
+                GameManager.Instance.blnCanTriggerBedAudio = false;
 
             // if the object is tagged bookshelf
             if (hit.transform.gameObject.tag == "Bookshelf")
-            {
-                // set the game manager bookshelf trigger to true
-                GameManager.Instance.blnTriggerBookshelf = true;
-                GameManager.Instance.blnInstructionsTriggered = true;
-            }
+                // set the game manager radio audio trigger to true
+                GameManager.Instance.blnCanTriggerBookshelfAudio = true;
             else if (hit.transform.gameObject.tag != "Bookshelf")
-            {
                 // else set it to false
-                GameManager.Instance.blnTriggerBookshelf = false;
-            }
+                GameManager.Instance.blnCanTriggerBookshelfAudio = false;
         } else
         {
-            // set trigger to false
-            GameManager.Instance.blnInstructionsTriggered = false;
-            GameManager.Instance.blnTriggerDoor = false;
-            GameManager.Instance.blnTriggerLaptop = false;
-            GameManager.Instance.blnTriggerRadio = false;
-            GameManager.Instance.blnTriggerBed = false;
-            GameManager.Instance.blnTriggerBookshelf = false;
+            // set all audio triggers to false
+            GameManager.Instance.blnCanTriggerDoorAudio = false;
+            GameManager.Instance.blnCanTriggerLaptopAudio = false;
+            GameManager.Instance.blnCanTriggerRadioAudio = false;
+            GameManager.Instance.blnCanTriggerBedAudio = false;
+            GameManager.Instance.blnCanTriggerBookshelfAudio = false;
         }
     }
 }
