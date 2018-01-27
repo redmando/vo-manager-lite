@@ -74,29 +74,29 @@ There are 4 main functions you can call up through the VO Manager.
 
 ### Play Mode
 
-Play mode can be called in 4 different ways and triggers audio calls normally. This means that once you make a call to the play function, you can not make another one until the function is done playing.
+Play mode can be called in 4 different ways and triggers audio calls normally. This means that once you make a call to the play function, you cannot make another one until the function is done playing.
 
 ```csharp
 VOManager.Instance.Play(int _id);
 VOManager.Instance.Play(string _name);
 ```
-The example above is a set of the same except the major difference is that they both take in a different type of parameter. One takes in an integer while the other takes in a string. You can call an audio to play by passing through its ID or its assign Name.
+The example above both plays audio the same way except they each take in a different type of parameter. One takes in an integer while the other takes in a string. You can call an audio to play by passing through its ID or its assign Name.
 
 ```csharp
 VOManager.Instance.Play(AudioSource _audSrc, int _id);
 VOManager.Instance.Play(AudioSource _audSrc, string _name);
 ```
-The second set is very identical to the ones above except it takes in a second parameter which is an audio source. By passing through an audio source you are able to play an audio from an external source instead of the one attached to the VO Manager. This allows for more control over the 3D sound.
+The second set is very identical to the ones above except it takes in a second parameter which is an audio source. By passing through an audio source you can play an audio from an external source instead of the one attached to the VO Bank. This allows for more control over 3D sound.
 
 ### Force Play Mode
 
-Just like our regular play mode, force play mode takes in the same type of parameters to trigger an audio. This parameter takes in either an integer or a string. The biggest difference between Play and Force Play mode is that calling the force play function immediately cuts off the current audio that is playing and plays the new on that is called.
+Like our regular play mode, force play mode takes in the same type of parameters. The parameters passed through can either be an integer or a string. The distinction between Play and Force Play mode is that calling the force play function immediately cuts off the current audio that is playing and plays the new on that is called.
 
 ```csharp
 VOManager.Instance.ForcePlay(int _id);
 VOManager.Instance.ForcePlay(string _name);
 ```
-Much like the functions above, force play mode also takes in an external audio source.
+Force play mode also takes in an external audio source.
 
 ```csharp
 VOManager.Instance.ForcePlay(AudioSource _audSrc, int _id);
@@ -113,7 +113,7 @@ VOManager.Instance.IsPlaying();
 
 ### Stop
 
-Calling the stop functionality simply just stops all current audio sources that are playing and subtitles drawn on-screen.
+Calling the stop functionality simply stops all current audio sources that are playing and subtitles drawn on-screen.
 
 ```csharp
 VOManager.Instance.Stop();
