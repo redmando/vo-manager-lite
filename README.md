@@ -58,8 +58,8 @@ Setup the Text component properties and values the way you'd want it to appear (
 
 Once the set up for the manager has been completed, save your scene and do one of the following:
 
-1. If you used the VO Manager prefab you can either Apply the current prefab or;
-2. Create a new prefab by dragging your VO Manager object into the Project panel (this should be done if you made your VO Manager by creating a new GameObject) to save a backup prefab.
+1.	If you used the VO Bank prefab you can either Apply the current prefab or;
+2.	Create a new prefab by dragging your VO Bank object into the Project panel (this should be done if you’ve made your VO Bank by creating a new GameObject) to save a backup prefab.
 
 You can also remove audio clips by clicking on the "-" button beside each audio clip name.
     
