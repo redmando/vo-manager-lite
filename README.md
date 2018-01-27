@@ -65,10 +65,12 @@ You can also remove audio clips by clicking on the "-" button beside each audio 
     
 ## Usage
 
-There are currently two ways to trigger an audio through the VO Manager. Those are:
+There are 4 main functions you can call up through the VO Manager.
 
-1. Play Mode
-2. Force Play Mode
+1.	Play Mode
+2.	Force Play Mode
+3.	Checks
+4.	Stop
 
 ### Play Mode
 
