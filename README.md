@@ -130,22 +130,3 @@ Additionally to learn more or find tutorials you can go to:
 * Website at [https://www.tvledesign.com](https://www.tvledesign.com)
 * Blog at [https://www.tonyvle.com](https://www.tonyvle.com)
 * YouTube Channel at [https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w](https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w)
-    
-## Credits
-
-* Tony V. Le - Developer
-* Gareth Lynch - Artist
-* Joe Song - Audio
-
-## Special Thanks
-Special thanks to these wonderful people who were on my team at the Global Game Jam 2016 which inspired me to create the VO Manager:
-
-* Cameron Cintron 
-* Jessica Borlovan
-* Joe Song
-* Neal Shaw 
-    
-Last but not least these wonderful organizations that made this idea possible:
-
-* Global Game Jam 
-* Petal et Al 
