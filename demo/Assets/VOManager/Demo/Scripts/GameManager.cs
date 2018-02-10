@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Hint")]
     public Text txtHint;    // text object that informs the player what to do
-    public float fltHintFadeSpeed;  // fade speed for hint text object
 
     [Header("Door")]
     public AudioSource audSrcDoor;   // the audio source for the door
