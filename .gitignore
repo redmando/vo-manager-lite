@@ -3,6 +3,8 @@ demo/Temp
 demo/Assembly-CSharp-Editor.csproj
 demo/Assembly-CSharp.csproj
 demo/demo.sln
+demo/demo.csproj
+demo/demo.Editor.csproj
 demo/obj
 demo/.vs
 demo/tmp
