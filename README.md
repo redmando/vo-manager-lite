@@ -127,6 +127,6 @@ If you have any questions, feedback, or issues, please feel free to contact me v
 
 Additionally to learn more or find tutorials you can go to:
 
-* Website at [https://www.tvledesign.com](https://www.tvledesign.com)
-* Blog at [https://www.tonyvle.com](https://www.tonyvle.com)
+* Website at [https://tvledesign.com](https://tvledesign.com)
+* Blog at [https://tonyvle.com](https://tonyvle.com)
 * YouTube Channel at [https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w](https://www.youtube.com/channel/UCeto2S7J0vwAeNAdonRH80w)
