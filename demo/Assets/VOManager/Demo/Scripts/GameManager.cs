@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
         // if audio is not triggerable and hint text object is not empty 
         // and mode is not force play and audio has started
-        if ((blnAudioHasStarted && txtHint.text != "" && !blnForcePlay) || (!blnCanTriggerDoorAudio && !blnCanTriggerLaptopAudio && !blnCanTriggerRadioAudio && !blnCanTriggerBedAudio && !blnCanTriggerBookshelfAudio && blnForcePlay))
+        if ((blnAudioHasStarted && txtHint.text != "" && !blnForcePlay) || (!blnCanTriggerDoorAudio && !blnCanTriggerLaptopAudio && !blnCanTriggerRadioAudio && !blnCanTriggerBedAudio && !blnCanTriggerBookshelfAudio))
             // empty the field
             txtHint.text = "";
 
