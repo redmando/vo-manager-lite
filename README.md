@@ -31,15 +31,15 @@ In order to use our VO Manager, we must first make sure that our VO Bank is pres
 1. Create a new empty GameObject in the Hierarchy and drag and drop the VO Bank or VO Manager script onto the newly made gameobject or;
 2. You can go into the prefabs folder in the project panel and simply drag and drop the VO Bank prefab into the Hierarchy.
 
-![VOManager GameObject](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-1.png)
+![VOManager GameObject](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/src/img/ss-1.png)
 
 Before we can begin using the VO Manager we must first start by adding VO (voice-over) clips into our VO Bank and any subtitles that we may want to go with it. To do so, click on VO Manager in the Hierarchy and press the “Add Clip” button under VO Bank. You should see a similar interface below once you click on the add clip button.
 
-![VOBank Add Clip](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-2.png)
+![VOBank Add Clip](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/src/img/ss-2.png)
 
 Go ahead and click on the expand icon by “[ID 0] Clip Name” to expand the panel.
 
-![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-3.png)
+![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/src/img/ss-3.png)
 
 Once expanded you should see a few more options. Here is a list of what they are and do:
 
@@ -50,11 +50,11 @@ Once expanded you should see a few more options. Here is a list of what they are
 
 Once the VO Bank is set up there is one last step we need to perform before we can use our VO Manager. In order to use our subtitle system, we must first go to the Hierarchy and create a new Text object. To do this go to Create -> UI -> Text. By default (if you have no Canvas elements in the scene) it will automatically create a Canvas and EventSystem object for you like so:
 
-![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-4.png)
+![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/src/img/ss-4.png)
 
 Setup the Text component properties and values the way you'd want it to appear (by default you can keep the text field of the text component empty). Once you are done click back on the VO Bank object and drag and drop the Text component we just created (highlighted in the hierarchy above) into the UI Text Object field in our VO Manager. Once you have at least one sound clip added into your VO Bank it should look like the following:
 
-![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/master/documentation/src/img/ss-5.png)
+![Clip Properties](https://raw.githubusercontent.com/tvledesign/vo-manager-lite/src/img/ss-5.png)
 
 Once the set up for the manager has been completed, save your scene and do one of the following:
 
