@@ -432,6 +432,11 @@ public class GameManager : MonoBehaviour
                             // disable the gameobject
                             goBedBreadcrumb.SetActive(false);
 
+                        // if the index is greater than the length
+                        if (m_intCurrentIndex >= 2)
+                            // reset it to 0
+                            m_intCurrentIndex = 0;
+
                         // play the audio clip
                         VOManager.Instance.Play(m_col_strBed[m_intCurrentIndex]);
 
@@ -449,6 +454,11 @@ public class GameManager : MonoBehaviour
                         if (goBookshelfBreadcrumb.activeInHierarchy)
                             // disable the gameobject
                             goBookshelfBreadcrumb.SetActive(false);
+
+                        // if the index is greater than the length
+                        if (m_intCurrentIndex >= 2)
+                            // reset it to 0
+                            m_intCurrentIndex = 0;
 
                         // play the audio clip
                         VOManager.Instance.Play(m_col_strBookshelf[m_intCurrentIndex]);
@@ -479,6 +489,11 @@ public class GameManager : MonoBehaviour
                             // disable the gameobject
                             goBedBreadcrumb.SetActive(false);
 
+                        // if the index is greater than the length
+                        if (m_intCurrentIndex >= 2)
+                            // reset it to 0
+                            m_intCurrentIndex = 0;
+
                         // play the audio clip
                         VOManager.Instance.ForcePlay(m_col_strBed[m_intCurrentIndex]);
 
@@ -496,6 +511,11 @@ public class GameManager : MonoBehaviour
                         if (goBookshelfBreadcrumb.activeInHierarchy)
                             // disable the gameobject
                             goBookshelfBreadcrumb.SetActive(false);
+
+                        // if the index is greater than the length
+                        if (m_intCurrentIndex >= 2)
+                            // reset it to 0
+                            m_intCurrentIndex = 0;
 
                         // play the audio clip
                         VOManager.Instance.ForcePlay(m_col_strBookshelf[m_intCurrentIndex]);
