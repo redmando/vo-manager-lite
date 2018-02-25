@@ -1,0 +1,26 @@
+Initialize engine version: 5.3.6f1 (29055738eb78)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon R7 200 Series (ID=0x6819)
+    Vendor:   ATI
+    VRAM:     2028 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.115 seconds
+Platform assembly: F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\Workspace\GitHub\vo-manager-lite\builds\Windows\VO Manager Lite - Demo_Data\Managed\System.dll (this message is harmless)
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 59Hz; virtual: 5760x1080 at -1920,0
+<RI> Initialized touch support.
+UnloadTime: 0.779843 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 6678 -> priority: 1 
